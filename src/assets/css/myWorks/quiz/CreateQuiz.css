@@ -1,0 +1,183 @@
+.add_quiz_container {
+    padding: 10px;
+    width: 100%;
+    max-width: 410px;
+}
+.quiz_wrapper {
+    border: 1px solid #153A61;
+    border-radius: 5px;
+    padding: 5px;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.quiz_wrapper .qw_remove_quiz {
+    position: absolute;
+    cursor: pointer;
+    right: 5px;
+    top: 5px;
+    background-color: rgba(255, 0, 0, 0.475);
+    border: 1px solid red;
+    padding: 3px 5px;
+    color: #fff;
+    transition:  all .3s;
+}
+.quiz_wrapper .qw_remove_quiz:hover {
+    transform: scale(1.03);
+    opacity: .8;
+}
+.quiz_wrapper .qw_remove_quiz:active {
+    transform: scale(1);
+    opacity: 1;
+}
+.add_quiz_title {
+    display: flex;
+    flex-direction: column;
+    margin: 7px 0;
+}
+.add_quiz_title span {
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+}
+.add_quiz_title input {
+    height: 30px;
+    padding-left: 5px;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+.add_question {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px dotted gray;
+    padding-bottom: 5px;
+}
+.add_question label {
+    display: flex ;
+    font-family: "Poppins",sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.add_question input {
+    font-size: 17px;
+    height: 30px;
+    padding-left: 5px;
+    outline: none;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+.quiz_choices {
+    margin-top: 5px;
+    border-bottom: 1px dotted gray;
+}
+.quiz_choices .add_choices_txt {
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1px;
+}
+.quiz_choices .choice_list {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    align-items: center;
+}
+.quiz_choices .choice_list input {
+    width: 100%;
+    height: 30px;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+.quiz_choices .choice_list span {
+    font-size: 17px;
+}
+.quiz_choices  button {
+    margin: 5px 0;
+    font-size: 25px;
+    cursor: pointer;
+    height: 30px;
+    width: 100%;
+}
+
+.add_answer {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+.add_answer label {
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1px;
+}
+.add_answer select  {
+    height: 30px;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+.add_save_quiz {
+    display: flex;
+    gap: 10px;
+}
+.add_save_quiz button {
+    padding: 5px 10px;
+    font-weight: 600;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.add_save_quiz .add_more_quiz_btn {
+   background-color: #153A61;
+   color: #fff;
+   transition: all .2s;
+   transform: scale(1);
+}
+.add_save_quiz .add_more_quiz_btn:hover {
+    transform: scale(1.1);
+}
+.add_save_quiz .add_more_quiz_btn:active {
+    transform: scale(1);
+}
+.add_save_quiz .save_quiz_btn {
+    border: 1px solid #153A61;
+    color: #153A61;
+    transform: scale(1);
+    transition: all .1s;
+}
+.add_save_quiz .save_quiz_btn:hover {
+    transform: scale(1.1);
+}
+.add_save_quiz .save_quiz_btn:active {
+    transform: scale(1);
+}
+
+
+.aqc_err_container {
+    position: fixed;
+    height: 50px;
+    width: max-content;
+    background-color: rgb(139, 21, 21);
+    margin: 10px auto 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    gap: 5px;
+}
+.aqc_err_container span {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+}
+.aqc_err_container i {
+    cursor: pointer;
+    margin-top: 1px;
+}
+
+

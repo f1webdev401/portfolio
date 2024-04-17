@@ -1,0 +1,64 @@
+.create_quiz_link_wrapper {
+    padding: 10px;
+    margin: 5px;
+}
+
+.create_quiz_link_wrapper a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    letter-spacing: 1.5px;
+    font-family: "Poppins",sans-serif;
+    color: black;
+    transform: scale(1);
+    transition: all .2s;
+    background-color: #17273E;
+    color: #fff;
+}
+.create_quiz_link_wrapper a:hover {
+    transform: scale(1.03);
+}
+.create_quiz_link_wrapper a:active {
+    transform: scale(1);
+}
+.quiz_list ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+.quiz_list ul li {
+    color: blue;
+    margin-top: 5px;
+    list-style: decimal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #213649;
+}
+.quiz_list ul li a {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    padding: 5px;
+    text-decoration:underline;
+    color: #fff;
+}
+.quiz_list ul li button {
+    cursor: pointer;
+}
+
+.no_quiz_text span {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: rgb(172, 25, 25);
+}

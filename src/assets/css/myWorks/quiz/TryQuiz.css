@@ -1,0 +1,63 @@
+.try_quiz_container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.quiz_qustion_wrapper {
+    margin-top: 15px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+}
+.try_quiz_container .quiz_title {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1px;
+}
+.score_wrapper .quiz_score  {
+    font-size: 17px;
+    font-family: "Poppins",sans-serif;
+}
+.quiz_qustion_wrapper .question_text span {
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+}
+.quiz_qustion_wrapper .question_choices {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 3px 0px 3px;
+}
+.quiz_qustion_wrapper .question_choices input[type="radio"] {
+    height: 17px;
+    width: 17px;
+    vertical-align: middle;
+   
+ }
+ .quiz_qustion_wrapper .question_choices label {
+    font-size: 17px;
+    margin-left: 5px;
+    font-family: "Poppins",sans-serif;
+ }
+
+ .try_quiz_container .sub_try_again {
+    margin-top: 20px;
+ }
+ .try_quiz_container .sub_try_again button {
+    width: 100%;
+    height: 30px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    font-family: "Poppins",sans-serif;
+    border: 1px solid gray;
+    border-radius: 10px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all .3s;
+ }
+ .try_quiz_container .sub_try_again button:hover {
+    transform: scale(1.03);
+ }
+ .try_quiz_container .sub_try_again button:active {
+    transform: scale(1);
+ }

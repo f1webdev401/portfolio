@@ -1,0 +1,57 @@
+.mywork_list_wrapper {
+    display: flex;
+    /* border: 1px solid blue; */
+    padding: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.mywork_list_wrapper .work_container {
+    width: 280px;
+    height: 300px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.mywork_list_wrapper .work_container .mywork_image {
+    width: 98%;
+    height: 230px;
+    /* border: 1px solid black; */
+}
+.mywork_list_wrapper .work_container .mywork_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.mywork_list_wrapper .work_container h1 {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+}
+
+@media only screen and (max-width: 615px) {
+    .mywork_list_wrapper {
+        padding: 5px;
+        gap: 5px;
+    }
+    .mywork_list_wrapper .work_container {
+        width: 48%;
+    }
+
+    .mywork_list_wrapper .work_container {
+        height: 250px;
+    }
+    .mywork_list_wrapper .work_container .mywork_image {
+        width: 98%;
+        height: 180px;
+        /* border: 1px solid black; */
+    }
+    .mywork_list_wrapper .work_container h1 {
+        font-size: 17px;
+    }
+}

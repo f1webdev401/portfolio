@@ -1,0 +1,13 @@
+.chat_app_container {
+    border: 1px solid black;
+    height: 550px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px auto 0 auto;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    grid-row: auto;
+    position: relative;
+}

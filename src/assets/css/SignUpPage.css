@@ -1,0 +1,109 @@
+.sign_up_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.sign_up_page .sign_up_form {
+    border: 1px solid gray;
+    width: 100%;
+    max-width: 420px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}   
+.sign_up_page .sign_up_form .sp_form_header_text span {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+.sign_up_page .sign_up_form .sp_error_message_wrapper {
+    border: 1px solid #BD1825;
+    color: #fff;
+    padding: 5px 5px 5px 10px;
+    background-color: #BD1825;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.sign_up_page .sign_up_form .sp_error_message_wrapper span{
+    font-family: "Poppins",sans-serif;
+}
+.sign_up_page .sign_up_form .sp_error_message_wrapper .sp_error_message{
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.sign_up_page .sign_up_form .sp_error_message_wrapper .close {
+    border: 1px solid white;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.sign_up_page .sign_up_form div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.sign_up_page .sign_up_form div input {
+    height: 40px;
+    font-size: 17px;
+    padding-left: 5px;
+    letter-spacing: 1.5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+.sign_up_page .sign_up_form div label {
+    font-size: 17px;
+    font-family: 'Poppins',sans-serif;
+    letter-spacing: 1.5px;
+}
+.sign_up_page .sign_up_form div .sup_pass_label {
+    display: block;
+    margin-bottom: -10px;
+}
+.sign_up_page .sign_up_form div  .sup_inp_wrapper {
+    position: relative;
+}
+.sign_up_page .sign_up_form div  i {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    height: max-content;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.sign_up_page .sign_up_form div  .hide2 {
+    display: none;
+}
+.sign_up_page .sign_up_form button {
+    width: 100%;
+    margin: 20px 0 5px;
+    height: 40px;
+    background-color: #111B36;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    letter-spacing: 1.5px;
+    font-family: "Poppins",sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sign_up_page .sign_up_form .sp_sign_in_link {
+    font-family: 'Poppins',sans-serif;
+}
+
+@media only screen and (max-width: 500px) {
+    .sign_up_page {
+        padding: 5px;
+        height: calc(100vh - 70px);
+
+    }
+    .sign_up_page .sign_up_form .sp_sign_in_link {
+       font-size: 14px;
+    }  
+}

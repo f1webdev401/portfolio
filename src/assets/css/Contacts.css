@@ -1,0 +1,29 @@
+.contacts_page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+}
+.contacts_container {
+    padding: 5px;
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.contacts_container div {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #213649;
+    border-radius: 5px;
+    color: #fff;
+}
+.contacts_container div h1 ,p{
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+}
+.contacts_container div a {
+    color: #fff;
+    font-family: "Poppins",sans-serif;
+}

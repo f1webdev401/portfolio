@@ -1,0 +1,14 @@
+.quiz_app_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.quiz_app_title h1 {
+    font-family: "Merriweather", serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
