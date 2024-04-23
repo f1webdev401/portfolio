@@ -30,6 +30,7 @@ import ProfileFriendRequest from "./component/profile/ProfileFriendRequest";
 import ChatAppBox from "./component/chatapp/ChatAppBox";
 import FindFriends from "./component/chatapp/FindFriends";
 import Contacts from "./pages/Contacts";
+import PaymentIntegration from "./pages/myWorks/PaymentIntegration";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -148,6 +149,10 @@ const router = createBrowserRouter([
                     {
                         path: 'ecommerce',
                         element: <Ecommerce />
+                    },
+                    {
+                        path: 'paymentintegration',
+                        element: <PaymentIntegration />
                     }
                 ]
             } ,

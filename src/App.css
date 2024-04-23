@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+  --dark-black: #0C1A1C;
+  --green-color:   #087B5E;
+  --dark-aqua: #01B9EF ;
+  --dark-blue: #153A61;
+  --white-gray:rgb(214, 208, 208); 
+  --yellow-green: #B1DA5A;
+  --light-gray: #243033;
+}
 
 .main_app {
   width: 100%;

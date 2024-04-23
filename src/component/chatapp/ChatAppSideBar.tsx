@@ -18,7 +18,6 @@ const ChatAppSideBar = () => {
     const {id} = useParams()
     const [allUsers,setAllUsers] = useState<any>([])
     const [loading, setLoading] = useState(true)
-    const [userIsLoading,setUserIsLoading] = useState(true)
     const [searchUsers,setSearchUsers] = useState<any>()
     const [inpSearchVal , setInpSearchVal] = useState("")
     const [chatSideOpen,setChatSideOpen] = useState(false)
@@ -71,7 +70,6 @@ const ChatAppSideBar = () => {
             }
             setAllUsers(userFriends)
             setSearchUsers(userFriends)
-            setUserIsLoading(false)
             setLoading(false)
           }
         }catch(e) {
@@ -97,9 +95,9 @@ const ChatAppSideBar = () => {
     const CloseChatBar = () => {
       setChatSideOpen(false)
     }
-    useEffect(() => {
-      setChatSideOpen(false)
-    },[id])
+    // useEffect(() => {
+    //   setChatSideOpen(false)
+    // },[id])
     const [width, setWidth] = useState<any>(window.innerWidth);
 
   useEffect(() => {
@@ -116,7 +114,7 @@ const ChatAppSideBar = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [width]);
+  }, [width,id]);
     if(loading && user) {
       return (
         <>

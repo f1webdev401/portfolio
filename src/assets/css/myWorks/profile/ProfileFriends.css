@@ -59,7 +59,7 @@
     align-items: center;
     gap: 10px;
 }
-.pf_fr_user_container .pf_fr_user_action button {
+.pf_fr_user_container .pf_fr_user_action button , .pf_message_link_btn {
     padding: 5px 10px;
     border-radius: 10px;
     border: none;
@@ -76,14 +76,24 @@
 .pf_fr_user_container .pf_fr_user_action button:nth-child(1) {
     background-color: #A2695C;
 }
-.pf_fr_user_container .pf_fr_user_action button:nth-child(2) {
-    background-color: rgb(33, 33, 187);
-}
+
 .pf_fr_user_container .pf_fr_user_action button:hover {
     opacity: .8;
     transform: scale(1.03);
 }
 .pf_fr_user_container .pf_fr_user_action button:active {
+    opacity: 1;
+    transform: scale(1); 
+}
+.pf_fr_user_action .pf_message_link_btn {
+    background-color: blue;
+    text-decoration: none;
+}
+.pf_fr_user_action .pf_message_link_btn:hover {
+    opacity: .8;
+    transform: scale(1.03);
+}
+.pf_fr_user_action .pf_message_link_btn:active {
     opacity: 1;
     transform: scale(1); 
 }
@@ -140,7 +150,7 @@
     .pf_fr_user_container .pf_fr_user_info span:nth-child(2) {
         font-size: 12px;
     }
-    .pf_fr_user_container .pf_fr_user_action button {
+    .pf_fr_user_container .pf_fr_user_action button , .pf_message_link_btn{
         font-size: 10px;
     }
 }

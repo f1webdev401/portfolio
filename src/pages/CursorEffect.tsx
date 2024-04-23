@@ -1,4 +1,4 @@
-import React, { useRef , useState , useEffect} from 'react'
+import { useRef , useState , useEffect} from 'react'
 import '../assets/css/CursorEffect.css'
 const CursorEffect = () => {
     const [colors,setColors] = useState<any>([
@@ -41,7 +41,7 @@ const CursorEffect = () => {
         },[cursor])
   return (
     <div ref={CursorDivRef}
-     className='cursor_effect'>CursorEffect</div>
+     className='cursor_effect'></div>
   )
 }
 

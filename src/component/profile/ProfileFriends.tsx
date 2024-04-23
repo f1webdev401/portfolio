@@ -87,7 +87,7 @@ const ProfileFriends = () => {
         friends.map((user:any , index: any) => (
             <div key={index} className='pf_fr_user_container'>
                 <div className='pf_fr_image_wrapper'>
-                    <img src={user.photoUrl ? user.photoUrl :""} alt="" />
+                    <img src={user.photoUrl ? user.photoUrl :"https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png"} alt="" />
                 </div>
                 <div className='pf_fr_user_info'>
                     <span> {user.userName}</span>
@@ -95,7 +95,7 @@ const ProfileFriends = () => {
                 </div>
                 <div className="pf_fr_user_action">
                     <button onClick={() => UnfriendHandler(user.userId)}>Unfriend</button>
-                    <button>Message</button>
+                    <Link className='pf_message_link_btn' to={`/myworkf1/chat_app/${user.userId}`}>Message</Link>
                 </div>
             </div>
         ))

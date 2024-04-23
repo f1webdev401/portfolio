@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import WebLogo from '../assets/images/icon_1.png'
 import '../assets/css/myWorks/UserProfile.css'
 import { useParams } from 'react-router-dom'

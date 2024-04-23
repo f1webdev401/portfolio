@@ -117,13 +117,18 @@ const ProfilePage = () => {
             const usersCollection = collection(db,'users')
                 const querySnapShot :any =await getDocs(query(usersCollection,where('userId' , '==' , user.uid)))
                 const doc = await querySnapShot.docs[0].data().friends
-                return doc
+                if(doc) {
+                    setFriends(doc.length)
+                } else {
+                    doc.length(0)
+                }
         }
     }
     
 
     useEffect(() => {
         setEditNameVal(user ? user.displayName :'')
+        getUserAccount()
     },[user])
   return (
     <section className='profile_page_container'>
@@ -181,7 +186,7 @@ const ProfilePage = () => {
                         }
                     </div>
                     <div className="profile_friends">
-                    <p>100 friends</p>
+                    <p>{friends} friends</p>
                     </div>
                     </div>
                     <div className='profile_edit_btn'>  {

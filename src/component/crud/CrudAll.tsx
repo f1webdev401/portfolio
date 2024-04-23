@@ -1,4 +1,4 @@
-import React, { useEffect, useState , CSSProperties } from 'react'
+import{ useEffect, useState , CSSProperties } from 'react'
 import { db } from '../../firebase-config'
 import {doc,deleteDoc , updateDoc} from 'firebase/firestore'
 import { useContext } from 'react'

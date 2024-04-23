@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import '../../assets/css/myWorks/QuizApp.css'
 import { useState } from "react"
 

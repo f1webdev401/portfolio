@@ -41,9 +41,9 @@
     height: 100%;
     background-color: #fff;
 }
-/* .cas_side_bar header form .close_side_bar {
+.cas_side_bar header form .close_side_bar {
     display: none;
-} */
+}
 .cas_side_bar header form .open_chat {
     display: none;
 }
@@ -168,6 +168,9 @@
     transform: translateX(calc(var(--translate-value) * -1));
   } */
 @media only screen and (max-width: 800px) {
+    .cas_side_bar header form .close_side_bar {
+        display: block;
+    }
     .cas_side_bar header form .open_chat {
         display: block;
     } 

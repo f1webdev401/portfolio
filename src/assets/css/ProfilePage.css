@@ -228,10 +228,16 @@
       
 
 /* loading */
+@media only screen and (max-width: 1000px) {
+    .pg_cover_photo {
+        border-radius: 0;
+    }
+}
 @media only screen and (max-width: 825px) {
     .friend_request_navigator  a {
         font-size: 14px;
     }
+  
 }
 @media only screen and (max-width: 665px) {
     .pg_cover_photo {

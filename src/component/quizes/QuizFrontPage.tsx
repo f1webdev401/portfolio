@@ -14,9 +14,7 @@ const QuizFrontPage = () => {
         setSavedQuiz(saveQuizes)
     },[])
     const DeleteQuizHandler = (id:any) => {
-        console.log(saveQuiz)
         let newSaveQuiz = saveQuiz.filter((_:any,index:any) => index !== id)
-        console.log(newSaveQuiz)
         localStorage.setItem("quizes", JSON.stringify(newSaveQuiz));
         setSavedQuiz(newSaveQuiz)
         

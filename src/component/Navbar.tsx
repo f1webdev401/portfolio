@@ -4,7 +4,7 @@ import Logo from '../assets/images/icon_1.png'
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SignUpContext from "./signUpContext";
 interface User {
     uid: string;
@@ -18,13 +18,15 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps>  = ({user}) => {
     const navigate = useNavigate()
     const {setSignUpMessage} = useContext(SignUpContext)
-    const [isNavMenuOpen,setIsNavMenuOpen] = useState(false)
+    const [isNavMenuOpen,setIsNavMenuOpen] = useState<any>("")
+    const [loading,setLoading] = useState(true)
     const logout = async () => {
         await signOut(auth)
         setIsNavMenuOpen(false)
         setSignUpMessage("You are now Logout")
         navigate('/sign_in')
     }
+    
   return (
     <header className="navbar">
         <NavLink to={""} className='nav_banner'>
@@ -78,14 +80,14 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
            
         </ul>
         {
-            isNavMenuOpen && 
+            isNavMenuOpen !== "" &&isNavMenuOpen && 
             <div className="nav_menu_helper" onClick={()=>setIsNavMenuOpen(false)}>
 
             </div>
         }
             <div 
             style={{
-                animation: isNavMenuOpen ? '.3s navmenuContainer forwards' :'.3s navmenuContainerClose forwards'
+                animation: isNavMenuOpen !== "" ? isNavMenuOpen ? '.3s navmenuContainer forwards' :'.3s navmenuContainerClose forwards' : ""
             }}
             className="nav_menu_container">
             <div className="nav_menu_close">

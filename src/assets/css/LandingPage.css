@@ -1,3 +1,4 @@
+
 .hero_section {
     width: 100%;
     height: calc(100vh - 80px);
@@ -5,19 +6,54 @@
     grid-template-columns: repeat(2,1fr);
     position: relative;
     grid-template-rows: 1fr;
-    border-bottom: 1px solid black;
+    background-image: radial-gradient(#243033, #0C1A1C);
+}
+.bottom_curve {
+    width: 100%;
+    max-width: 700px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: 20px;
+}
+/* .bottom_curve::before {
+    width: 50px;
+    height: 122px;
+    content: '';
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+    background-color: #0C1A1C;
+} */
+.bottom_curve::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 120px;
+    background-color: blue;
+    right: 0;
+    left: -22px;
+    transform: rotate(24deg);
+    background-color: white;
+    bottom: -30px;
+    border-radius: 10px;
 }
 .text_banner {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 15px;
+    padding-left: 50px;
 }
 .text_banner h1 {
     font-size: 35px;
-    text-align: center;
-    font-family: "Merriweather", serif;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    color: var(--white-gray);
 }
 .text_banner .txt_banner_button {
     display: flex;
@@ -32,10 +68,33 @@
     color: #fff;
 }
 .text_banner .txt_banner_button .hire_me_btn {
-    background-color: #01B9EF;
+    background-color: var(--dark-aqua);
 }
 .text_banner .txt_banner_button .contact_me_btn {
-    background-color: #153A61;
+    background-color: var(--dark-blue);
+}
+.text_banner .txt_banner_rate_views {
+    display: flex;
+    gap: 20px;
+}
+.text_banner .txt_banner_rate_views button {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
+    background-color: var(--yellow-green);
+    color: var(--dark-black);
+}
+
+.text_banner .txt_banner_rate_views button span:nth-child(1) {
+    font-size: 16px;
+    
+}
+.text_banner .txt_banner_rate_views button span {
+    font-family: "Poppins" , sans-serif;
+    letter-spacing: 1.5px;
 }
  .hero_img_banner {
     height: calc(100vh - 80px);
@@ -61,6 +120,7 @@
     font-family: "Poppins",sans-serif;
     letter-spacing: 1.5px;
     font-weight: 400;
+    
 }
 
 .skills_section .skills_text {
@@ -94,14 +154,91 @@
 }
 .skills_section .skill_wrapper .skill i {
     font-size: 55px;
-    color: #01B9EF;
+    color: var(--dark-aqua);
 }
 .skills_section .skill_wrapper .skill h1 {
     font-family: "Poppins",sans-serif;
     letter-spacing: 1.5px;
-    color: #153A61;
+    color: var(--dark-blue);
 }
 
+.add_rating_review {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    /* border: 1px solid #677799; */
+    border-radius: 5px;
+    padding: 5px;
+    border-top: 1px solid var(--dark-aqua);
+    margin-top: 100px;
+}
+.add_rating_review h1 {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+}
+.add_rating_review .add_rating_wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+.add_rating_review .add_rating_wrapper i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.add_rating_review .add_review_wrapper .add_review_textarea{
+    resize: none;
+    outline: none;
+    padding: 5px;
+    font-size: 17px;
+}
+.add_rating_review .email_input_ {
+    padding: 10px 0;
+}
+.add_rating_review .email_input_  label {
+    display: block;
+    font-family: "Poppins",sans-serif;
+}
+.add_rating_review .email_input_ input {
+    width: 100%;
+    outline: none;
+    height: 35px;
+    padding-left: 5px;
+    font-size: 17px;
+    letter-spacing: 1.5px;
+}
+.add_review_rating_action {
+    display: flex;
+    justify-content: flex-end;
+}
+.add_review_rating_action button {
+    padding: 7px 20px;
+    font-size: 17px;
+    letter-spacing: 1.5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--dark-aqua);
+    color: #f4f4f4;
+    cursor: pointer;
+}
+.add_rating_review {
+    
+}
+.add_rating_review .success_submit {
+background-color: var(--green-color);
+width: max-content;
+padding: 5px 20px;
+border-radius: 5px;
+font-family: "Poppins",sans-serif;
+display: flex;
+gap: 10px;
+align-items: center;
+color: #fff;
+}
+.add_rating_review .success_submit i {
+    cursor: pointer;
+}
 @media only screen and (max-width: 900px) {
     .landing_page .hero_section {
         display: flex;

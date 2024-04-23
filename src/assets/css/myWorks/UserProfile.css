@@ -1,6 +1,5 @@
 .user_profile_page_container {
     display: flex;
-    align-items: center;
     justify-content: center;
     height: calc(100vh - (80px));
 }
@@ -222,3 +221,38 @@
     margin-top: 10px;
 }
 /* loading container */
+
+@media only screen and (max-width: 700px) {
+.upg_cover_photo {
+    border-radius: 0;
+}
+.u_profile_info_container .u_profile_image .u_profile_image_wrapper {
+    height: 50px;
+    width: 50px;
+
+}
+.u_profile_info_container {
+    gap: 7px;
+    height: 80px;
+    padding: 0 3px;
+    margin-top: 150px;
+    border-radius: 0;
+
+}
+.u_profile_info_container .u_profile_nf_container .u_profile_name h2 {
+    font-size: 16px;
+}
+.u_profile_info_container .u_profile_nf_container .u_profile_name span {
+    font-size: 13px;
+}
+.u_profile_info_container .u_profile_nf_container .u_profile_friends {
+    font-size: 12px;
+}
+.u_profile_info_container .u_profile_edit_btn button  {
+    padding: 5px 10px;
+    font-size: 11px;
+}
+.u_profile_info_container .u_profile_edit_btn button i {
+    font-size: 10px;
+}
+}

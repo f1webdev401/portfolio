@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import { collection , getDocs , where , query, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase-config'
 import UserContext from '../UserContext'
+import getUser from '../../utils/chat/getuser'
 const FindFriends = () => {
     const {user} = useContext(UserContext)
     const [allUsers,setAllUsers] = useState<any>(null)
@@ -62,19 +63,20 @@ const FindFriends = () => {
             return <><div><span>Something went wrong</span></div></>
         }
     }
-    async function getCurrentUser() {
-        if(user) {
-            const userCollection = collection(db ,'users')
-            const querySnapShot = await getDocs(query(userCollection ,where('userId','==',user.uid)))
-            const doc = querySnapShot.docs[0]
-            if(doc.data().friends) {
-                let data =  doc.data().friends.map((u_:any) => u_.user)
-                setCurrentUserFriends(data)
-            }else {
-                setCurrentUserFriends(null)
-            }
-        }
-    }
+    // async function getCurrentUser() {
+    //     if(user) {
+    //         const userCollection = collection(db ,'users')
+    //         const querySnapShot = await getDocs(query(userCollection ,where('userId','==',user.uid)))
+    //         const doc = querySnapShot.docs[0]
+    //         if(doc.data().friends) {
+    //             let data =  doc.data().friends.map((u_:any) => u_.user)
+    //             setCurrentUserFriends(data)
+    //         }else {
+    //             setCurrentUserFriends(null)
+    //         }
+    //     }
+    // }
+    
     async function AcceptFriendRequest(id:string) {
         if(user) {
             const userCollection = collection(db,'users')
@@ -127,7 +129,7 @@ const FindFriends = () => {
     }
     useEffect(() => {
         getAllUsers()
-        getCurrentUser()
+        getUser(user,setCurrentUserFriends)
     },[user,loading])
     if(loading) {
         return <>

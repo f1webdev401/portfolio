@@ -13,7 +13,7 @@ const MyWorkList = () => {
       <h1>Projects</h1>
     </div> */}
     <div className='mywork_list_wrapper'>        
-    {[['CALCULATOR','calculator',CalcImg],['QUIZ','quiz_app',QuizImg],['CHAT','chat_app',ChatImg] , ['CRUD','crud_app',TodoImg],['ECOMMERCE','https://f1webdev.github.io/sample_ecommerce/index.html',EcomImg]].map((list,index) => (
+    {[['CALCULATOR','calculator',CalcImg],['QUIZ','quiz_app',QuizImg],['CHAT','chat_app',ChatImg] , ['CRUD','crud_app',TodoImg],['ECOMMERCE','https://f1webdev.github.io/sample_ecommerce/index.html',EcomImg],['PAYMENT INTEGRATION','paymentintegration',"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeOCdubBqCkaWXZq6wn9Zx_XjeYyFYvNgQga9pWRJOnQ&s"]].map((list,index) => (
         <Link to={`${list[1]}`} key={index}className='work_container'>
         <div className="mywork_image" key={index}>
         <img src={list[2]} alt="" />

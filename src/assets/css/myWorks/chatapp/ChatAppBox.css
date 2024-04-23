@@ -11,3 +11,12 @@
     grid-row: auto;
     position: relative;
 }
+
+
+@media only screen and (max-width: 800px) {
+.chat_app_container {
+    border-radius: 0;
+    margin: 5px auto 0 auto;
+    border: 1px solid gray;
+}
+}

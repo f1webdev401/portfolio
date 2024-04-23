@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import '../../assets/css/myWorks/ChatApp.css'
-import ChatAppSideBar from '../../component/chatapp/ChatAppSideBar'
 import { Outlet } from 'react-router-dom'
 import { NavLink , Link } from 'react-router-dom'
 import UserContext from '../../component/UserContext'
+import LoadingPage from '../LoadingPage'
 const ChatApp = () => {
   const {user} = useContext(UserContext)
-
+  const [loading,setLoading] = useState(true)
   // if(!user) {
   //   return <>
   //   <div>
@@ -14,10 +14,18 @@ const ChatApp = () => {
   //   </div>
   //   </>
   // }
+  useEffect(() => {
+    setLoading(false)
+  },[user])
+  if(loading){
+    return <>
+      <LoadingPage />
+    </>
+  }
   return (
    
     <>
-    {!user &&
+    {!user && loading &&
     <div className="cas_need_login">
         <Link to='/sign_in'>Go to Login  <i className="fa-solid fa-right-to-bracket"></i></Link>
        
