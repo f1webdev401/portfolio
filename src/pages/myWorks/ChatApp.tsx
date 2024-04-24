@@ -7,31 +7,33 @@ import LoadingPage from '../LoadingPage'
 const ChatApp = () => {
   const {user} = useContext(UserContext)
   const [loading,setLoading] = useState(true)
-  // if(!user) {
-  //   return <>
-  //   <div>
-  //     <h1>Need to Login</h1>
-  //   </div>
-  //   </>
-  // }
   useEffect(() => {
-    setLoading(false)
+     // Set a timer to delay setting loading to false
+     const timerId = setTimeout(() => {
+      if (user !== undefined ) {
+        setLoading(false); // Set loading to false when user is available
+      }
+    }, 700);
+
+    // Clear the timer when the component unmounts or when user changes
+    return () => clearTimeout(timerId);
   },[user])
+  
   if(loading){
-    return <>
+    return (<>
       <LoadingPage />
-    </>
+    </>)
   }
   return (
    
     <>
-    {!user && loading &&
-    <div className="cas_need_login">
-        <Link to='/sign_in'>Go to Login  <i className="fa-solid fa-right-to-bracket"></i></Link>
-       
-    </div>
-
-    }
+    {!user &&
+      <div className="cas_need_login">
+          <Link to='/sign_in'>Go to Login  <i className="fa-solid fa-right-to-bracket"></i></Link>
+         
+      </div>
+  
+      }
     <div className='chat_app_nav'>
       <NavLink to={''}
       style={({ isActive}) => {
@@ -65,8 +67,9 @@ const ChatApp = () => {
       {/* <ChatAppSideBar/> */}
       <Outlet />
       </section>
+      
     </> 
-    
+   
   )
 }
 
