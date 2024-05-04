@@ -147,6 +147,7 @@
         grid-column: 2;
         height: 100%;
     }
+
     .pitc_item_wrapper .pitc_item_description {
         height: max-content;
     }
@@ -162,6 +163,10 @@
         grid-column: 2;
         height: 100%;
     }
+    .pitc_item_wrapper .pitc_quantity .unit_price .pitc_quantity .pitc_quantity_inpt input {
+        height: 25px;
+        width: 100px;
+    }
     .pitc_item_wrapper .pitc_item_description {
         height: max-content;
     }
@@ -173,5 +178,8 @@
         justify-content: flex-start;
         margin-top: 10px;
         grid-gap: 10px;
+    }
+    .pitc_item_wrapper .pitc_item_total_price span{
+       font-size: 13px;
     }
 }
