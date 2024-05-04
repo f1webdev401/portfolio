@@ -5,12 +5,9 @@ import LoadingPage from "../../pages/LoadingPage"
 import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 const Pi_Test_Cart = () => {
-    const [redirectCount,setRedirectCount] = useState<any>(3)
     const [isCheckoutTrigger,setIsCheckoutTrigger] = useState<boolean>(false)
-    
     const navigate = useNavigate()
     let cook = Cookies.get("peyment")
-    console.log(cook)
     const [testItem,setTestItem] = useState<any>([
         {
             id: 1,
@@ -62,32 +59,8 @@ const Pi_Test_Cart = () => {
         newTestItem[index].quantity = value
         setTestItem(newTestItem)
     }
-    /* const CheckOut =  async () => {
-        // axios.post('http://localhost:5000/attach-intent-method')
-        // .then((res:any) => {
-        //     console.log(res)
-        // }) 
-        // .catch(e => {
-        //     console.log((e.response.data.error[0].detail).slice(8))
-        // })
-        // console.log('redirecting in ..')
-        // setIsCheckoutTrigger(true)
-        // let totalPrice = testItem.reduce((acc:number,curr:any) => {
-        //     return acc + curr.totalPrice()
-        // },0)
-        // for(let i = 3 ; i > -1 ; i --) {
-        //     await new Promise(res => setTimeout(res,1000))
-        //     console.log(i)
-        //     setRedirectCount(i)
-        // }
-        // console.log('fired')
-        // navigate('checkout')
-    } */
     const CheckOut = async () => {
         setIsCheckoutTrigger(true)
-        // let totalPrice = testItem.reduce((acc:number,curr:any) => {
-        //     return acc + curr.totalPrice()
-        // },0)
         const data = {
             data: {
               attributes: {
@@ -109,8 +82,8 @@ const Pi_Test_Cart = () => {
             withCredentials: true
         })
         .then(async(res) => {
-            console.log(res.data)
-            console.log(res.status)
+            // console.log(res.data)
+            // console.log(res.status)
             if(res.status === 200) {
                 Cookies.set('payment-intent',JSON.stringify(res.data))
                 navigate('checkout')
@@ -118,8 +91,7 @@ const Pi_Test_Cart = () => {
         })
         .catch(e => {
             console.log(e)
-        setIsCheckoutTrigger(false)
-
+            setIsCheckoutTrigger(false)
         })
     }
   return (
@@ -209,8 +181,6 @@ const Pi_Test_Cart = () => {
         <div className="pitc_redirect_container">
             <div className="pitc_count">
             <span>Redirecting in Payment..</span>
-            {/* <LoadingPage/> */}
-            <span>{redirectCount}</span>
             </div>
             <span className="loader"></span>
         </div>

@@ -120,7 +120,7 @@ const ProfilePage = () => {
                 if(doc) {
                     setFriends(doc.length)
                 } else {
-                    doc.length(0)
+                    setFriends(0)
                 }
         }
     }
