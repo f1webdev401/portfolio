@@ -77,7 +77,7 @@ const Pi_Checkout = () => {
    const SubmitPayment = async (e:any) => {
     setIsSubmitted(true)
         e.preventDefault()
-        axios.post('http://localhost:5000/attach-intent-method',
+        axios.post(process.env.REACT_APP_SERVER_API +'attach-intent-method',
         {data , paymentIntentId},
         {
             withCredentials: true

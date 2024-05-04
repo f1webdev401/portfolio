@@ -105,7 +105,7 @@ const Pi_Test_Cart = () => {
             }
           };
         //   https://first-deploy-server.onrender.com/create-payment-intent
-        axios.post('http://localhost:5000/create-payment-intent',data,{
+        axios.post(process.env.REACT_APP_SERVER_API + 'create-payment-intent',data,{
             withCredentials: true
         })
         .then(async(res) => {
