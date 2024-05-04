@@ -2,6 +2,8 @@
     width: 100%;
     max-width: 1200px;
     margin: 20px auto;
+    position: relative;
+    overflow: hidden;
 }
 .pic_container header h1 {
     font-size: 22px;
@@ -165,3 +167,88 @@
     height: 100vh;
     background-color: rgba(52, 70, 111, 0.402);
 }
+
+
+/* test cards */
+.view_test_cards {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.view_test_cards button {
+    padding: 5px 10px;
+    letter-spacing: 1.5px;
+    font-family: "Poppins",sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.test_cards_helper {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(23, 23, 242, 0.166);
+    z-index: 2;
+}
+.test_cards_container {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    background-color: #fff;
+    top: 0;
+    width: 100%;
+    max-width: 500px;
+    height: max-content;
+    padding: 10px 0;
+    right: -100%;
+    animation: test_cards .3s forwards;
+    border-bottom-left-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+@keyframes test_cards {
+    from{right: -100%;}
+    to{right: 0;}
+}
+.test_cards_container .test_cards_info {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.test_cards_container .test_cards_info  .test_cards_txt {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    font-weight: bolder;
+}
+.test_cards_container .test_cards_close {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-family: "Poppins",sans-serif;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+}
+.test_cards_container .test_cards_header {
+    display: grid;
+    grid-template-columns: 200px 150px 150px;
+    padding: 5px;
+    font-family: "Poppins",sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border-top: 1px solid black;
+    margin-top: 20px;
+    border-bottom: 1px dotted black;
+}
+.test_cards_container .test_cards_choices {
+    display: grid;
+    grid-template-columns: 200px 150px 150px;
+    padding: 5px;
+    font-family: "Poppins",sans-serif;
+    font-size: 14px;
+} 
+/* test cards */

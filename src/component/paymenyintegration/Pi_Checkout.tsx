@@ -6,6 +6,18 @@ import { useNavigate } from 'react-router-dom'
 const Pi_Checkout = () => {
     const navigate = useNavigate()
     let paymentIntentId :any = Cookies.get('payment-intent')
+    const [isTestCards,setIsTestCards] = useState(false)
+    const testCards = [
+        {card_number: '4343434343434345',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '4571736000000075',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '4009930000001421',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '4404520000001439',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '5555444444444457',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '5455590000000009',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '5339080000000003',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '5240050000001440',cvc:'Any 3 digits',expiration: 'any future date'},
+        {card_number: '5577510000001446',cvc:'Any 3 digits',expiration: 'any future date'},
+    ]
     // console.log(JSON.parse(paymentIntentId))
     const [errorPayment , setErrorPayment] = useState<string>('')
     const [isSubmitted,setIsSubmitted] = useState<boolean>(false)
@@ -103,6 +115,40 @@ const Pi_Checkout = () => {
         <header>
             <h1>Checkout Test Payment</h1>  
         </header>
+        <div className="view_test_cards">
+        <i className="fa-solid fa-hand-point-right"></i><button
+        onClick={() => setIsTestCards(true)}
+        >VIEW TEST CARDS <i className="fa-solid fa-bars"></i></button>
+        </div>
+        {isTestCards &&
+            <>
+        <div className="test_cards_helper">
+
+        </div>
+        <div className="test_cards_container">
+            <div className='test_cards_info'>
+                <button onClick={() => setIsTestCards(false)} className='test_cards_close'>
+                    <i className="fa-solid fa-arrow-right"></i>
+                    <span>Close</span>
+                </button>
+                <span className='test_cards_txt'>TEST CARDS LIST'S</span>
+            </div>
+            <div className='test_cards_header'>
+                <span>Card Number</span>
+                <span>CVC</span>
+                <span>Expiration Date</span>
+            </div>
+
+            {testCards.map((card:any,index:any) => (
+                <div className='test_cards_choices'  key={index}>
+                    <span>{card.card_number}</span>
+                    <span>{card.cvc}</span>
+                    <span>{card.expiration}</span>
+                </div>
+            ))}
+        </div>
+            </>
+        }
         <div className="pic_payment_id_info">
             <h2>Payment Id: </h2>
             <h2>{JSON.parse(paymentIntentId).id.slice(3)}</h2>
