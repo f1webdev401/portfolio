@@ -1,0 +1,17 @@
+.pi_container .pi_title h1 {
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    padding: 5px;
+}
+.pi_container .pi_title .pi_title_des {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--green-color);
+    color: var(--white-gray);
+    padding: 5px 20px;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    width: max-content;
+    border-radius: 5px;
+}

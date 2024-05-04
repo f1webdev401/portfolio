@@ -1,0 +1,81 @@
+.pi_success_p_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins",sans-serif;
+}
+
+.pi_success_box_container {
+    width: 100%;
+    max-width: 450px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    position: relative;
+}
+
+.pisbc_header_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+.pisbc_header_text i {
+    font-size: 45px;
+    color: var(--green-color);
+}
+.pisbc_header_text span {
+    color: var(--green-color);
+    letter-spacing: 1.5px;
+    font-size: 18px;
+}
+.pisp_details {
+    margin-top: 20px;
+}
+.pisp_details .span_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+.pisp_details .span_wrapper  span {
+    letter-spacing: 1.5px;
+}
+.pisp_details .pisp_ammount_paid {
+    border-bottom: 2px dotted gray;
+}
+.pisp_details .pisp_ammount_paid span {
+    font-weight: 600;
+    font-size: 16.5px;
+}
+.pisp_details .pis_date_wrapper ,.transaction_id {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pisp_details .pis_date_wrapper span,.pisp_details .transaction_id span {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+
+.pi_success_box_container .pisp_close_btn {
+    height: 30px;
+    position: absolute;
+    bottom: 40px;
+    width: 80%;
+    display: block;
+    text-decoration: none;
+    background-color: var(--green-color);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 10px;
+    letter-spacing: 1.5px;
+}
