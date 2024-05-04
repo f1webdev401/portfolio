@@ -136,3 +136,42 @@
     box-shadow: 0x 20px 20px white;
 
 }
+
+@media only screen and (max-width: 700px) {
+    .pitc_item_wrapper {
+        grid-template-columns: 150px 210px  auto;
+        grid-template-rows: 50px 80px;
+    }
+    .pitc_item_wrapper .pitc_quantity {
+        grid-row: 2;
+        grid-column: 2;
+        height: 100%;
+    }
+    .pitc_item_wrapper .pitc_item_description {
+        height: max-content;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .pitc_item_wrapper {
+        grid-template-columns: 150px   auto;
+        grid-template-rows: 50px 80px 30px;
+    }
+    .pitc_item_wrapper .pitc_quantity {
+        grid-row: 2;
+        grid-column: 2;
+        height: 100%;
+    }
+    .pitc_item_wrapper .pitc_item_description {
+        height: max-content;
+    }
+    .pitc_item_wrapper .pitc_item_total_price {
+        grid-row: 3;
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 10px;
+        grid-gap: 10px;
+    }
+}

@@ -142,8 +142,8 @@ const Pi_Test_Cart = () => {
                         </div>
                     </div>
                     <div className="pitc_item_total_price">
-                        <span>TOTAL PRICE</span>
-                        <span>{item.totalPrice().toLocaleString()}</span>
+                        <span>TOTAL PRICE: </span>
+                        <span>PHP {item.totalPrice().toLocaleString()}</span>
                     </div>
                 </div>
                 </div>

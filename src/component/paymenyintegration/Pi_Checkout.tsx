@@ -122,7 +122,7 @@ const Pi_Checkout = () => {
         </div>
         {isTestCards &&
             <>
-        <div className="test_cards_helper">
+        <div className="test_cards_helper" onClick={() => setIsTestCards(false)}>
 
         </div>
         <div className="test_cards_container">
