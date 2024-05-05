@@ -282,6 +282,9 @@
     }
     .view_test_cards {
     }
+    .pic_payment_form {
+        padding: 0 10px;
+    }
     .pic_payment_form .pic_cofirm_payment {
         padding: 0 20px 0;
     }

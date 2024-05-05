@@ -7,10 +7,11 @@ const PaymentIntegration = () => {
         <h1>PAYMENT GATEWAY INTEGRATION</h1>
         <div className="pi_title_des">
           <span>THIS IS FOR TEST MODE ONLY</span>
-          <i className="fa-solid fa-circle-info"></i>
+          <i style={{color: 'yellow'}} className="fa-solid fa-circle-info"></i>
         </div>
         <div className="pi_title_des" style={{marginTop: '10px'}}>
-          <span>PAYMONGO</span>
+        <i className="fa-solid fa-credit-card"></i>
+          <span>USING PAYMONGO</span>
         </div>
       </div>
       {/* <Pi_Test_Cart /> */}

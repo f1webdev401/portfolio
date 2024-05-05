@@ -85,7 +85,7 @@ const Pi_Test_Cart = () => {
             // console.log(res.data)
             // console.log(res.status)
             if(res.status === 200) {
-                Cookies.set('payment-intent',JSON.stringify(res.data))
+                Cookies.set('payment-intent',res.data)
                 navigate('checkout')
             }
         })
