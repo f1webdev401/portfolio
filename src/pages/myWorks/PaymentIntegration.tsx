@@ -9,6 +9,9 @@ const PaymentIntegration = () => {
           <span>THIS IS FOR TEST MODE ONLY</span>
           <i className="fa-solid fa-circle-info"></i>
         </div>
+        <div className="pi_title_des" style={{marginTop: '10px'}}>
+          <span>PAYMONGO</span>
+        </div>
       </div>
       {/* <Pi_Test_Cart /> */}
       <Outlet/>

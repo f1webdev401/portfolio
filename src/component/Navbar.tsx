@@ -65,11 +65,13 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
             end to={'contacts'}>
                 CONTACTS
             </NavLink>
-            {user?  <button 
-            onClick={() => setIsNavMenuOpen(true)}
-            className="nav_menu_btn">
-            <i className="fa-solid fa-bars"></i>
-            </button> :
+
+            {user? 
+             
+            <NavLink to={'/profile'} className="nav_user_image">
+                <img src={user.photoURL} alt="" />
+            </NavLink>
+            :
                 <NavLink to={"sign_in"}>
                     <span className="nav_sign_in_txt">SIGN IN
                         </span>    
@@ -77,7 +79,11 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
                 </NavLink>
             }
             {/* <span>{user ? <button onClick={logout}>Signout</button> : ''}</span>z */}
-           
+           <button 
+            onClick={() => setIsNavMenuOpen(true)}
+            className="nav_menu_btn">
+            <i className="fa-solid fa-bars"></i>
+            </button>
         </ul>
         {
             isNavMenuOpen !== "" &&isNavMenuOpen && 
@@ -90,11 +96,15 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
                 animation: isNavMenuOpen !== "" ? isNavMenuOpen ? '.3s navmenuContainer forwards' :'.3s navmenuContainerClose forwards' : ""
             }}
             className="nav_menu_container">
+                
             <div className="nav_menu_close">
-            <i onClick={() => setIsNavMenuOpen(false)} className="fa-solid fa-xmark"></i>
+            {/* <i onClick={() => setIsNavMenuOpen(false)} className="fa-solid fa-xmark"></i> */}
+            <span>F1 WEB DEV</span>
+            <i onClick={() => setIsNavMenuOpen(false)} className="fa-solid fa-rectangle-xmark"></i>
             </div>
 
             <div className="profile_container">
+                <div className="navpi_wrapper">
                 <div className="nav_profile_image">
                     <img src={user?.photoURL ? user?.photoURL : "https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png"} alt="" />
                 </div>
@@ -102,9 +112,39 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
                 <span>{user?.displayName}</span>
                 <span>{user?.email}</span>
                 </div>
+                </div>
                 <div className="nav_profile_link">
-                    <Link onClick={() => setIsNavMenuOpen(false)} to="/profile">View Profile</Link>
-                <button onClick={logout}>Logout</button>
+                    <Link onClick={() => setIsNavMenuOpen(false)} to="/profile">
+                    <i className="fa-solid fa-user"></i>
+                    <span>
+                        View Profile
+                    </span>
+                    </Link>
+
+                    <Link to={""}>
+                    <i className="fa-solid fa-house"></i>
+                    <span>
+                        HOME
+                    </span>
+                    </Link>
+                    <Link to={""}>
+                    <i className="fa-solid fa-person-digging"></i>
+                    <span>
+                        MY WORKS
+                    </span>
+                    </Link>
+                    <Link to={""}>
+                    <i className="fa-solid fa-address-book"></i>
+                        <span>
+                        CONTACTS
+                        </span>
+                    </Link>
+                <button onClick={logout}>
+                <i className="fa-solid fa-right-from-bracket"></i>
+                    <span>
+                    Logout
+                    </span>
+                    </button>
                 </div>
             </div>
         </div> 

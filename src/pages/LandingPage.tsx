@@ -108,7 +108,6 @@ const LandingPage = () => {
             <h1>HI IM</h1>
             <h1>F1 WEB DEV</h1>
             <h1>STARTING TO DIVE INTO WEBSITE DEVELOPMENT</h1>
-            <h1>NEED SOME WEBSITE ?</h1>
             <div className="txt_banner_button">
                 <button className='hire_me_btn'>HIRE ME</button>
                 <button className='contact_me_btn'>CONTACT ME</button>

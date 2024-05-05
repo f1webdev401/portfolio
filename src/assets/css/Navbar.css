@@ -43,6 +43,7 @@
 .navbar ul {
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 .navbar ul a {
     font-size: 18px;
@@ -54,6 +55,7 @@
     color: black;
     transform: scale(1);
     transition: all .3s;
+    height: max-content;
 }
 .navbar ul a .nav_sign_in_icon {
     display: none;
@@ -63,12 +65,28 @@
     border-bottom: 1px solid black;
 }
 
+/* nav user image */
+.navbar .nav_user_image {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.navbar .nav_user_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* nav user image */
+
 .navbar .nav_menu_btn {
     border: none;
     height: max-content;
     margin: auto 0;
     cursor: pointer;
     background-color: transparent;
+    display: none;
 }
 .navbar .nav_menu_btn i {
     font-size: 20px;
@@ -79,7 +97,7 @@
     right: -100%;
     height: 100vh;
     width: 300px;
-    background-color: #fff;
+    background-color: #151719;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     top: 0;
     /* animation: .3s navmenuContainer forwards; */
@@ -94,12 +112,23 @@
     from {right: 0;}
     to {right: -100%;}
 }
-.nav_menu_container .nav_menu_close i {
-    margin: 10px 0 0 10px;
-    font-size: 20px;
-    cursor: pointer;
+.nav_menu_container .nav_menu_close {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    justify-content: space-between;
+    border-bottom: 1px dotted #707479;
 }
-
+.nav_menu_container .nav_menu_close span {
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    color: #f4f4f4;
+    font-weight: 600;
+}
+.nav_menu_container .nav_menu_close i {
+    color: #707479;
+}
 .nav_menu_helper {
     width: 100%;
     height: 100vh;
@@ -109,29 +138,31 @@
     top: 0;
 }
 
-
-.profile_container  .nav_profile_image {
+.profile_container .navpi_wrapper {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    color: #fff;
+}
+.profile_container .navpi_wrapper .nav_profile_image {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 10px;
     overflow: hidden;
     border: 1px solid black;
-    margin: 0 auto;
 }
 .profile_container  .nav_profile_image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.profile_container .nav_profile_info  {
+.profile_container .navpi_wrapper .nav_profile_info  {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
 }
-.profile_container .nav_profile_info span {
+.profile_container .navpi_wrapper .nav_profile_info span {
     font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
 }
 .profile_container .nav_profile_info span:nth-child(2) {
     font-size: 14px;
@@ -142,23 +173,28 @@
     flex-direction: column;
     padding: 5px;
     gap: 10px;
+    /* background-color: #333439; */
 }
 .profile_container .nav_profile_link a {
     width: 100%;
-    background-color: #27343C;
-    padding: 5px 10px;
+    background-color: #35353B;
+    padding: 25px 10px;
     text-decoration: none;
     color: #fff;
     font-family: "Poppins",sans-serif;
     letter-spacing: 1.5px;
-    font-size: 14px;
+    font-size: 16px;
     height: 35px;
     display: flex;
     align-items: center;
     border-radius: 5px;
-    justify-content: center;
 }
-
+.profile_container .nav_profile_link a i {
+    margin-left: 20px;
+}
+.profile_container .nav_profile_link a span {
+    margin-left: 20px;
+}
 .profile_container .nav_profile_link a:hover {
     opacity: .7;
 }
@@ -166,14 +202,24 @@
     opacity: 1;
 }
 .profile_container .nav_profile_link button {
-    height: 30px;
     letter-spacing: 1.5px;
+    padding: 15px 10px;
     color: #fff;
     font-family: "Poppins",sans-serif;
     border-radius: 5px;
     border: none;
     background-color: #27343C;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.profile_container .nav_profile_link button i {
+    margin-left: 20px;
+    font-size: 20px;
+}
+.profile_container .nav_profile_link button span {
+    margin-left: 20px;
+    font-size: 16px;
 }
 .profile_container .nav_profile_link button:hover {
     opacity: .7;
@@ -181,11 +227,16 @@
 .profile_container .nav_profile_link button:active {
     opacity: 1;
 }
+
+
 @media only screen and (max-width: 710px) {
     
-    .navbar .nav_banner span {
-        display: none;
-    }
+  .navbar ul a{
+    display: none;
+  } 
+  .navbar .nav_menu_btn {
+    display: block;
+  }
 }
 @media only screen and (max-width: 640px) {
     .navbar {
