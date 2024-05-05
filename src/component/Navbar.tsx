@@ -114,37 +114,53 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
                 </div>
                 </div>
                 <div className="nav_profile_link">
+                    {
+                        user &&
                     <Link onClick={() => setIsNavMenuOpen(false)} to="/profile">
                     <i className="fa-solid fa-user"></i>
                     <span>
                         View Profile
                     </span>
                     </Link>
+                    }
 
-                    <Link to={""}>
+                    <Link to={"/"}
+                     onClick={() => setIsNavMenuOpen(false)}
+                    >
                     <i className="fa-solid fa-house"></i>
                     <span>
                         HOME
                     </span>
                     </Link>
-                    <Link to={""}>
+                    <Link to={"/myworkf1"}
+                     onClick={() => setIsNavMenuOpen(false)}
+                    >
                     <i className="fa-solid fa-person-digging"></i>
                     <span>
                         MY WORKS
                     </span>
                     </Link>
-                    <Link to={""}>
+                    <Link to={"/contacts"}
+                    onClick={() => setIsNavMenuOpen(false)}>
                     <i className="fa-solid fa-address-book"></i>
                         <span>
                         CONTACTS
                         </span>
                     </Link>
+                    {
+                        user ?
                 <button onClick={logout}>
                 <i className="fa-solid fa-right-from-bracket"></i>
                     <span>
                     Logout
                     </span>
-                    </button>
+                    </button> : 
+                    <Link style={{marginTop: '10px'}}  onClick={() => setIsNavMenuOpen(false)} to={'sign_in'}>
+                        <i className="fa-solid fa-right-to-bracket"></i>
+                        <span>Login</span>
+                        
+                        </Link>
+                    }
                 </div>
             </div>
         </div> 
