@@ -10,14 +10,14 @@ const Contacts = () => {
                 <h1>Phonenumber: </h1>
                 <p></p>
             </div> */}
-            <div className="facebook">
+            {/* <div className="facebook">
                 <h1>Facebook: </h1>
-                <a href="https://www.facebook.com/profile.php?id=61558574728861">F1 WEB DEV
-</a>
-            </div>
+                <a href="">F1 WEB DEV
+                </a>
+            </div> */}
             <div className="email">
                 <h1>Email: </h1>
-                <p>f1webdev@gmail.com</p>
+                <p>adarogn45@gmail.com</p>
             </div>
         </div>
     </section>
