@@ -34,6 +34,7 @@ import PaymentIntegration from "./pages/myWorks/PaymentIntegration";
 import Pi_Test_Cart from "./component/paymenyintegration/Pi_Test_Cart";
 import Pi_Checkout from "./component/paymenyintegration/Pi_Checkout";
 import Pi_Success_Payment from "./component/paymenyintegration/Pi_Success_Payment";
+import LiveStream from "./pages/myWorks/livestream/LiveStream";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -170,6 +171,10 @@ const router = createBrowserRouter([
                                 element: <Pi_Success_Payment />
                             }
                         ]
+                    },
+                    {
+                        path: 'livestream',
+                        element: <LiveStream />
                     }
                 ]
             } ,
