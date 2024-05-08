@@ -71,7 +71,7 @@ const LandingPage = () => {
     useEffect(() => {
        
         let isViewed = Cookies.get('viewed')
-        if(isViewed === undefined) {
+        if(isViewed === undefined || !isViewed) {
             Cookies.set('viewed',"true")
             get(countRef).then((snapshot:any) => {
                 const data = snapshot.val();
