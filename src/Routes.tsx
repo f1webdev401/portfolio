@@ -35,6 +35,10 @@ import Pi_Test_Cart from "./component/paymenyintegration/Pi_Test_Cart";
 import Pi_Checkout from "./component/paymenyintegration/Pi_Checkout";
 import Pi_Success_Payment from "./component/paymenyintegration/Pi_Success_Payment";
 import LiveStream from "./pages/myWorks/livestream/LiveStream";
+import LiveStreamEntry from "./pages/myWorks/livestream/LiveStreamEntry";
+import ViewerStream from "./pages/myWorks/livestream/ViewerStream";
+import AdminStream from "./pages/myWorks/livestream/AdminStream";
+import { StreamProvider } from "./pages/myWorks/livestream/context/StreamerContext";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -174,7 +178,23 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'livestream',
-                        element: <LiveStream />
+                        element:(<StreamProvider>
+                            <LiveStream/>
+                        </StreamProvider>),
+                        children: [
+                            {
+                                path: '',
+                                element: <LiveStreamEntry />
+                            },
+                            {
+                                path: 'viewerpage/:id/:v_id/:name',
+                                element: <ViewerStream />
+                            },
+                            {
+                                path: 'streamerpage/:id/:caption/:name',
+                                element: <AdminStream />
+                            }
+                        ]
                     }
                 ]
             } ,

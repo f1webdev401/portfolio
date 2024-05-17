@@ -1,9 +1,9 @@
-import React from 'react'
-
+import '../../../assets/css/myWorks/livestream/LiveStream.css'
+import { Outlet } from 'react-router-dom'
 const LiveStream = () => {
   return (
-    <div>
-        <h1 style={{width:'max-content',margin:'20px auto 0',padding: '10px 20px',fontFamily:'Poppins,sans-serif',backgroundColor:'blue'}}>OMG</h1>
+    <div className='livestream_container'>
+      <Outlet />
     </div>
   )
 }
