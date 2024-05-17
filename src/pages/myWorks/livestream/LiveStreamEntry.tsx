@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { useContext } from 'react'
 import StreamContext from './context/StreamerContext'
 import {io} from 'socket.io-client'
-const socket = io('https://livestream-server-qhcr.onrender.com')
+const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
 // const socket = io('http://localhost:4000')
 const LiveStreamEntry = () => {
   let viewerId = uuid()
