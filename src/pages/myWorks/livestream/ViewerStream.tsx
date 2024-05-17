@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import {io} from 'socket.io-client'
 import '../../../assets/css/myWorks/livestream/ViewerStream.css'
 import { useParams } from 'react-router-dom'
-// const socket = io('https://livestream-server-qhcr.onrender.com')
-const socket = io('http://localhost:4000')
+const socket = io('https://livestream-server-qhcr.onrender.com')
+// const socket = io('http://localhost:4000')
 
 const ViewerStream = () => {
   let iceServers = {
