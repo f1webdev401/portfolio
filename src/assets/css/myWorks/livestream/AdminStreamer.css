@@ -1,6 +1,121 @@
 
 
-.as_container .streamer_video_container {
+/* .as_container .streamer_video_container {
     height: 500px;
     border: 1px solid black;
+} */
+.as_container {
+    height: 100vh;
+}
+.as_container .as_live_text {
+    margin: 20px auto;
+    width: max-content;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap:20px;
+    font-family: "Poppins",sans-serif;
+    border-radius: 5px;
+    letter-spacing: 1.5px;
+    background-color: var(--dark-red);
+    color: white;
+}
+.as_container .as_live_text span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.as_live_content {
+    display: flex;
+    width: max-content;
+    margin: 30px auto;
+    gap: 30px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.as_live_content .streamer_video_container {
+    height: 400px;
+    width: 700px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.as_live_content .streamer_video_container video {
+    width: 100%;
+    border: 1px solid white;
+    height: 600px;
+    margin-top: -70px;
+}
+
+.as_live_content .joined_viewer_container{
+    position: absolute;
+    left: 0;
+    padding: 5px 10px;
+    background-color: var(--dark-red);
+    color: white;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+}
+
+
+.as_live_content .stream_chat {
+    border: 1px solid gray;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.as_live_content .stream_chat .as_sca_header {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: var(--dark-aqua);
+    padding: 5px 10px;
+    font-family: "Poppins",sans-serif;
+    border-radius: 5px;
+    letter-spacing: 1.5px;
+    gap: 10px;
+    color: #fff;
+}
+.as_live_content .stream_chat  .chat_messages_container {
+    margin-top: 40px;
+    height: 350px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+.as_live_content .stream_chat  .chat_messages_container p {
+    border: 1px solid gray;
+    margin-top: 10px;
+    width: max-content;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.as_live_content .stream_chat form {
+    width: 100%;
+    display: flex;
+    height: 30px;
+    gap: 5px;
+}
+.as_live_content .stream_chat form input {
+    width: 100%;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    height: 100%;
+    padding-left: 5px;
+    font-family: "Poppins",sans-serif;
+}
+.as_live_content .stream_chat form button {
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    padding: 0 10px;
+    cursor: pointer;
 }

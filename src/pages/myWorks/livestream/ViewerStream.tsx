@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import {io} from 'socket.io-client'
 import '../../../assets/css/myWorks/livestream/ViewerStream.css'
 import { useParams } from 'react-router-dom'
-const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
-// const socket = io('http://localhost:4000')
+// const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
+const socket = io('http://localhost:4000')
 
 const ViewerStream = () => {
   let iceServers = {
@@ -96,18 +96,28 @@ const ViewerStream = () => {
   return (
     <section className='vs_container'>
       <div className="vs_video_container">
-      <video src="" ref={viewerStreamVideo} autoPlay muted playsInline></video>
+      <div className='vs_live_text'>
+      <span>
+      <i className="fa-regular fa-circle-dot"></i>
+        Live</span>
+      <i className="fa-solid fa-headset"></i>
       </div>
-      <div>
+      <video src="" ref={viewerStreamVideo} autoPlay  playsInline></video>
+      <div className='vs_viewer_wrapper'>
         {viewers ? 
-        <p>viewers: {viewers}</p> : ''  
+        <p>viewers {viewers}</p> : <p>viewers 0</p>  
       }
       </div>
-      <div className="vs_video_react_btn">
+      </div>
+      {/* <div className="vs_video_react_btn">
         <button>Like</button>
         <button>Heart</button>
-      </div>
+      </div> */}
       <div className="vs_chat_container">
+      <div className='vs_sca_header'>
+          <span>Chat </span>
+          <i className="fa-regular fa-comment-dots"></i>
+          </div>
         <div className="vs_chat_messages">
           {allMessage.map((msg:string , index:number) => (
             <p key={index}>{msg}</p>

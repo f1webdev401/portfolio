@@ -2,8 +2,8 @@ import { useEffect, useState  , useCallback, useRef} from 'react'
 import '../../../assets/css/myWorks/livestream/AdminStreamer.css'
 import { useParams } from 'react-router-dom'
 import { io } from "socket.io-client";
-const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
-// const socket = io('http://localhost:4000',{'multiplex':false})
+// const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
+const socket = io('http://localhost:4000',{'multiplex':false})
 const AdminStream = () => {
   let iceServers = {
     iceServers: [
@@ -46,13 +46,12 @@ const AdminStream = () => {
 
       socket.on('new viewer',(viewer) => {
         rtcPeerConnections[viewer.v_id] = new RTCPeerConnection(iceServers);
-        console.log(rtcPeerConnections,'new viewer on streamer page')
+        const peerConnection = rtcPeerConnections[viewer.v_id]
         const stream = streamVideo.current.srcObject
         stream
         .getTracks()
-        .forEach((track:any) => rtcPeerConnections[viewer.v_id].addTrack(track, stream));
-        console.log(stream)
-        rtcPeerConnections[viewer.v_id].onicecandidate = (event:any) => {
+        .forEach((track:any) => peerConnection.addTrack(track, stream));
+        peerConnection.onicecandidate = (event:any) => {
           if (event.candidate) {
             console.log("sending ice candidate");
             socket.emit("candidate", viewer.v_id, {
@@ -64,10 +63,10 @@ const AdminStream = () => {
           }
         };
 
-        rtcPeerConnections[viewer.v_id]
+        peerConnection
         .createOffer()
         .then((sessionDescription:any) => {
-          rtcPeerConnections[viewer.v_id].setLocalDescription(sessionDescription);
+          peerConnection.setLocalDescription(sessionDescription);
           socket.emit("offer", viewer.v_id, {
             type: "offer",
             sdp: sessionDescription,
@@ -79,6 +78,9 @@ const AdminStream = () => {
         });
 
       })
+
+
+
       socket.on("answer", function (viewerId, event) {
         rtcPeerConnections[viewerId].setRemoteDescription(
           new RTCSessionDescription(event)
@@ -98,7 +100,9 @@ const AdminStream = () => {
         console.log(rtcPeerConnections)
       })
     })
-
+    socket.on('disconnected',(message) => {
+      console.log(message)
+    })
     return () => {
       socket.off('create-stream');
       socket.off('connect');
@@ -114,23 +118,36 @@ const AdminStream = () => {
   },[])
   return (
     <section className='as_container'>
-      <span>connected{s_id}</span>
+      <div className='as_live_text'>
+      <span>
+      <i className="fa-regular fa-circle-dot"></i>
+        Live</span>
+      <i className="fa-solid fa-headset"></i>
+      </div>
+      <div className="as_live_content">
+
       <div className="streamer_video_container">
         <video src="" ref={streamVideo} autoPlay muted playsInline></video>
       </div>
       <div className="joined_viewer_container">
-        {viewers? <p>viewer{viewers}</p> :'no viewer'}
+        {viewers? <p>viewer <span>{viewers}</span></p> : <p>0 viewer</p>}
       </div>
       <div className="stream_chat">
+      <div className='as_sca_header'>
+          <span>Chat </span>
+          <i className="fa-regular fa-comment-dots"></i>
+          </div>
         <div className="chat_messages_container">
           {allMessage.map((msg:string , index:number) => (
             <p key={index}>{msg}</p>
           ))}
         </div>
         <form onSubmit={(e) => StreamerSendMessage(e)} className="streamer_chat_action">
+          
           <input value={streamerMsg} onChange={(e) => setStreamerMsg(e.target.value)} type="text" />
           <button>Send</button>
         </form>
+      </div>
       </div>
     </section>
   )
