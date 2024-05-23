@@ -2,8 +2,8 @@ import { useEffect, useState  , useCallback, useRef} from 'react'
 import '../../../assets/css/myWorks/livestream/AdminStreamer.css'
 import { useParams } from 'react-router-dom'
 import { io } from "socket.io-client";
-// const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
-const socket = io('http://localhost:4000',{'multiplex':false})
+const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
+// const socket = io('http://localhost:4000',{'multiplex':false})
 const AdminStream = () => {
   let iceServers = {
     iceServers: [
@@ -48,11 +48,13 @@ const AdminStream = () => {
         rtcPeerConnections[viewer.v_id] = new RTCPeerConnection(iceServers);
         const peerConnection = rtcPeerConnections[viewer.v_id]
         const stream = streamVideo.current.srcObject
+        console.log(stream)
         stream
         .getTracks()
         .forEach((track:any) => peerConnection.addTrack(track, stream));
         peerConnection.onicecandidate = (event:any) => {
           if (event.candidate) {
+            console.log(event,'this is on ice candidate')
             console.log("sending ice candidate");
             socket.emit("candidate", viewer.v_id, {
               type: "candidate",
@@ -67,6 +69,7 @@ const AdminStream = () => {
         .createOffer()
         .then((sessionDescription:any) => {
           peerConnection.setLocalDescription(sessionDescription);
+          console.log(sessionDescription,'this is createOffer session description')
           socket.emit("offer", viewer.v_id, {
             type: "offer",
             sdp: sessionDescription,
@@ -96,13 +99,13 @@ const AdminStream = () => {
 
       socket.on('viewers',(n) =>{
         setViewers(n)
-        
-        console.log(rtcPeerConnections)
+        console.log(rtcPeerConnections , 'this is rtcPeerConnection')
       })
     })
-    socket.on('disconnected',(message) => {
-      console.log(message)
+    socket.on('disconnected',(user) => {
+      delete rtcPeerConnections[user]
     })
+    console.log(rtcPeerConnections)
     return () => {
       socket.off('create-stream');
       socket.off('connect');

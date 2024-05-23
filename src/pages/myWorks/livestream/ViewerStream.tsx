@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import {io} from 'socket.io-client'
 import '../../../assets/css/myWorks/livestream/ViewerStream.css'
 import { useParams } from 'react-router-dom'
-// const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
-const socket = io('http://localhost:4000')
+const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
+// const socket = io('http://localhost:4000')
 
 const ViewerStream = () => {
   let iceServers = {
@@ -18,19 +18,15 @@ const ViewerStream = () => {
   const [allMessage,setAllMessage] = useState<any>([])
   const viewerStreamVideo = useRef<any>(null)
   const [viewers,setViewers] = useState<any>('')
+  const [viewerStream,setViewerStream] = useState<any>('')
   const SendMessageBtn = (e:any) => {
     e.preventDefault()
     socket.emit('message',messageTxt,id)
     setMessageTxt('')
   }
-   useEffect(() => {
-    socket.emit('join-stream',id ,v_id)
-    return () => {
-      socket.off('join-stream');
-    };
-   },[]) 
   useEffect(() => {
     socket.on('connect',() => {
+      socket.emit('join-stream',id ,v_id)
 
       socket.on('receive-message', (message) => {
         console.log(message);
@@ -54,7 +50,9 @@ const ViewerStream = () => {
         });
 
         rtcPeerConnections[broadcaster.id].ontrack = (event:any) => {
-          viewerStreamVideo.current.srcObject = event.streams[0]
+          
+          console.log(event.streams[0])
+            setViewerStream(event.streams[0])
         };
         rtcPeerConnections[broadcaster.id].onicecandidate = (event:any) => {
           if(event.candidate) {
@@ -79,11 +77,9 @@ const ViewerStream = () => {
      
       socket.on('viewers',(n) =>{
         setViewers(n)
-        
-        console.log(rtcPeerConnections)
+        console.log(rtcPeerConnections , 'this is rtc peer connections')
       })
     })
-   
     return () => {
       socket.off('receive-message');
       socket.off('register as viewer');
@@ -91,8 +87,16 @@ const ViewerStream = () => {
       socket.off('candidate')
       socket.off('offer')
       socket.off('viewers')
+      socket.off('join-stream');
     };
   }, []);
+  useEffect(() => {
+    if (viewerStreamVideo.current && viewerStream) {
+      viewerStreamVideo.current.srcObject = viewerStream;
+      viewerStreamVideo.current.play();
+    }
+  },[viewerStream])
+
   return (
     <section className='vs_container'>
       <div className="vs_video_container">
@@ -102,7 +106,7 @@ const ViewerStream = () => {
         Live</span>
       <i className="fa-solid fa-headset"></i>
       </div>
-      <video src="" ref={viewerStreamVideo} autoPlay  playsInline></video>
+      <video src="" ref={viewerStreamVideo}   playsInline muted></video>
       <div className='vs_viewer_wrapper'>
         {viewers ? 
         <p>viewers {viewers}</p> : <p>viewers 0</p>  
