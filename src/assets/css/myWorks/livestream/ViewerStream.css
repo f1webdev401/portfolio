@@ -82,7 +82,37 @@
     overflow-y: auto;
     padding-bottom: 20px;
 }
-
+.vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper {
+    margin: 5px 0;
+    padding-bottom: 5px;
+}
+.vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper span {
+    font-family: "Poppins",sans-serif;
+}
+.vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper .vs_chat_mgs_u_info{
+    display: flex;
+    gap: 10px;
+}
+.vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper .vs_chat_mgs_u_info .vs_chat_img_wrapper {
+    width: 30px ;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper .vs_chat_mgs_u_info .vs_chat_img_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper .vs_chat_mgs_u_info .vs_chat_text_wrapper {
+    width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.476);
+}
 .vs_chat_container  form {
     width: 100%;
     display: flex;

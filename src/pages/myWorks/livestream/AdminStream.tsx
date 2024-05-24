@@ -2,6 +2,7 @@ import { useEffect, useState  , useCallback, useRef} from 'react'
 import '../../../assets/css/myWorks/livestream/AdminStreamer.css'
 import { useParams } from 'react-router-dom'
 import { io } from "socket.io-client";
+import Cookies from 'js-cookie';
 const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
 // const socket = io('http://localhost:4000',{'multiplex':false})
 const AdminStream = () => {
@@ -16,12 +17,14 @@ const AdminStream = () => {
   const [allMessage,setAllMessage] = useState<any>([])
   const [joinedViewer,setJoinedViewer] = useState<any>([])
   const {id,name,caption} = useParams()
+  let image =  localStorage.getItem('streamerimg') || null
+  let streamImgThumbnail = localStorage.getItem('streamerthumbnail') || null
   const [s_id,setSid] = useState<any>('')
   const streamVideo = useRef<any>(null)
   const [viewers,setViewers] = useState<any>(0)
   const StreamerSendMessage = (e:any) => {
     e.preventDefault()
-    socket.emit('message',streamerMsg,id)
+    socket.emit('message',streamerMsg,id,name,image)
     setStreamerMsg('')
   }
   
@@ -31,7 +34,6 @@ const AdminStream = () => {
       video: { facingMode: 'user' }
     })
     .then((stream) => {
-      console.log(stream)
       streamVideo.current.srcObject = stream
       socket.emit('register as broadcaster',id)
     })
@@ -39,23 +41,20 @@ const AdminStream = () => {
       console.log("An error ocurred when accessing media devices", err);
     });
     socket.on('connect',() => {
-      socket.emit('create-stream',{id,name,caption})
+      socket.emit('create-stream',{id,name,caption,streamImgThumbnail})
       socket.on('receive-message', (message) => {
-        setAllMessage((prev: any) => [...prev, message]);
+        setAllMessage(message);
       });
 
       socket.on('new viewer',(viewer) => {
         rtcPeerConnections[viewer.v_id] = new RTCPeerConnection(iceServers);
         const peerConnection = rtcPeerConnections[viewer.v_id]
         const stream = streamVideo.current.srcObject
-        console.log(stream)
         stream
         .getTracks()
         .forEach((track:any) => peerConnection.addTrack(track, stream));
         peerConnection.onicecandidate = (event:any) => {
           if (event.candidate) {
-            console.log(event,'this is on ice candidate')
-            console.log("sending ice candidate");
             socket.emit("candidate", viewer.v_id, {
               type: "candidate",
               label: event.candidate.sdpMLineIndex,
@@ -69,7 +68,6 @@ const AdminStream = () => {
         .createOffer()
         .then((sessionDescription:any) => {
           peerConnection.setLocalDescription(sessionDescription);
-          console.log(sessionDescription,'this is createOffer session description')
           socket.emit("offer", viewer.v_id, {
             type: "offer",
             sdp: sessionDescription,
@@ -99,13 +97,12 @@ const AdminStream = () => {
 
       socket.on('viewers',(n) =>{
         setViewers(n)
-        console.log(rtcPeerConnections , 'this is rtcPeerConnection')
+       
       })
     })
     socket.on('disconnected',(user) => {
       delete rtcPeerConnections[user]
     })
-    console.log(rtcPeerConnections)
     return () => {
       socket.off('create-stream');
       socket.off('connect');
@@ -141,8 +138,18 @@ const AdminStream = () => {
           <i className="fa-regular fa-comment-dots"></i>
           </div>
         <div className="chat_messages_container">
-          {allMessage.map((msg:string , index:number) => (
-            <p key={index}>{msg}</p>
+          {allMessage && allMessage.map((msg:any , index:number) => (
+            <div className='as_chat_wrapper' key={index}>
+              <span>{msg.user}</span>
+              <div className='as_chat_msg_info'>
+                <div className="as_chat_img_wrapper">
+                  <img src={msg.image} alt="" style={{width:'30px',height: '30px'}}/>
+                </div>
+                <div className="as_chat_text_wrapper">
+                <p key={index}>{msg.message}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
         <form onSubmit={(e) => StreamerSendMessage(e)} className="streamer_chat_action">

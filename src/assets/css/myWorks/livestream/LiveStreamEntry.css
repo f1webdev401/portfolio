@@ -1,3 +1,40 @@
+.lse_livestream_list {
+    padding: 20px 30px;
+}
+.lse_livestream_list .lse_stream_list {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrapx;
+}
+.lse_livestream_list .lse_stream_list button{
+    width: 250px;
+    height: 170px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+.lse_livestream_list .lse_stream_list button .lse_stream_thumbnail{
+    width: 100%;
+    height: 130px;
+}
+.lse_livestream_list .lse_stream_list button .lse_stream_thumbnail img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.lse_livestream_list .lse_stream_list button p {
+    font-family: 'Poppins',sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 0 5px;
+}
 .lii_container {
     position: fixed;
     width: 100%;
@@ -12,10 +49,35 @@
 
 .lii_container .livestream_input_info{
     width: 100%;
-    max-width: 300px;
+    max-width: 450px;
     height: max-content;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid gray;
+    position: relative;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.lii_container .livestream_input_info .lli_button_close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: var(--dark-red);
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+} 
+.lii_container .livestream_input_info .lli_button_close:hover {
+    opacity: .8;
+}
+.lii_container .livestream_input_info .lli_button_close:active {
+    opacity: 1;
 }
 .lii_container .livestream_input_info div {
     display: flex;
@@ -30,9 +92,9 @@
     font-size: 17px;
 }
 
-.lii_container .livestream_input_info button {
+/* .lii_container .livestream_input_info button {
     margin-top: 20px;
     width: 100%;
     height: 30px;
     cursor: pointer;
-}
+} */
