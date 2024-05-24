@@ -1,3 +1,15 @@
+.lse_loader_container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.402);
+    z-index: 99999999;
+}
 .lse_livestream_list {
     padding: 20px 30px;
 }
@@ -45,6 +57,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(128, 128, 128, 0.444);
 }
 
 .lii_container .livestream_input_info{
@@ -98,3 +111,36 @@
     height: 30px;
     cursor: pointer;
 } */
+.lii_container .livestream_input_info .image_preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid gray;
+}
+.lii_container .livestream_input_info .image_preview  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.lii_container .livestream_input_info div button {
+    cursor: pointer;
+}
+.lii_container .livestream_input_info .lli_proceed_btn_container button {
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-family: "Poppins",sans-serif;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    background-color: var(--dark-aqua);
+    color: #fff;
+    transition: all .3s;
+}
+.lii_container .livestream_input_info .lli_proceed_btn_container button:hover {
+    opacity: .8;
+}
+.lii_container .livestream_input_info .lli_proceed_btn_container button:active {
+    opacity:1;
+}

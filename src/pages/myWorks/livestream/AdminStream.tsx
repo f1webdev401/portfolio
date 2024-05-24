@@ -2,7 +2,6 @@ import { useEffect, useState  , useCallback, useRef} from 'react'
 import '../../../assets/css/myWorks/livestream/AdminStreamer.css'
 import { useParams } from 'react-router-dom'
 import { io } from "socket.io-client";
-import Cookies from 'js-cookie';
 const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
 // const socket = io('http://localhost:4000',{'multiplex':false})
 const AdminStream = () => {

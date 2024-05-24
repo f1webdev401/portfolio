@@ -20,6 +20,7 @@ const ViewerStream = () => {
   const viewerStreamVideo = useRef<any>(null)
   const [viewers,setViewers] = useState<any>('')
   const [viewerStream,setViewerStream] = useState<any>('')
+  const [loading,setLoading] = useState<boolean>(true)
   const SendMessageBtn = (e:any) => {
     e.preventDefault()
     socket.emit('message',messageTxt,id,name,viewerImage)
@@ -49,7 +50,6 @@ const ViewerStream = () => {
         });
 
         rtcPeerConnections[broadcaster.id].ontrack = (event:any) => {
-          
             setViewerStream(event.streams[0])
         };
         rtcPeerConnections[broadcaster.id].onicecandidate = (event:any) => {
@@ -86,13 +86,21 @@ const ViewerStream = () => {
       socket.off('join-stream');
     };
   }, []);
+
   useEffect(() => {
     if (viewerStreamVideo.current && viewerStream) {
       viewerStreamVideo.current.srcObject = viewerStream;
       viewerStreamVideo.current.play();
-    }
+    } 
+    setLoading(false)
   },[viewerStream])
-
+  if(loading) {
+    return <>
+      <div className='vs_loading_container'>
+        <span className="loader"></span>
+      </div>
+    </>
+  }
   return (
     <section className='vs_container'>
       <div className="vs_video_container">

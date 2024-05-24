@@ -17,6 +17,7 @@ const LiveStreamEntry = () => {
     caption: ''
   })
   const [streamList,setStreamList] = useState<any>([])
+  const [loading,setLoading] = useState<boolean>(true)
   const [avatarPrev,setAvatarPrev] = useState<any>('')
   const [thumbnailPrev,setThumbnailPrev] = useState<any>('')
   const AddAvatarRef = useRef<any>(null)
@@ -75,6 +76,12 @@ const LiveStreamEntry = () => {
   }
   const LliButtonClose = () => {
     setStartStream(false)
+    setStreamInfo({
+      name: '',
+      caption: ''
+    })
+    setAvatarPrev('')
+    setThumbnailPrev('')
   }
     useEffect(() => {
       socket.on('connect',() => {
@@ -82,12 +89,20 @@ const LiveStreamEntry = () => {
         })
         socket.on('created-stream',(stream) => { 
           setStreamList(stream)
+          setLoading(false)
         })
         return () => {
         socket.off('connect')
         socket.off('created-stream')
       }
     },[])
+    if(loading) {
+      return <>
+      <div className='lse_loader_container'>
+  <span className="loader"></span>
+</div>
+      </>
+    }
   return (
     <>
      <div className="lse_livestream_list">
@@ -109,6 +124,7 @@ const LiveStreamEntry = () => {
       <p>No Streams</p>
     }
 </div>
+
 {startStream  && 
     <div className="lii_container">
     <div className="livestream_input_info">
@@ -135,12 +151,15 @@ const LiveStreamEntry = () => {
       </div>
     }
       <div>
-        <label htmlFor="">Add Avatart</label>
+        <label htmlFor="">Add Avatar</label>
         <input ref={AddAvatarRef} type="file" name="" id="" onChange={(e) => StreamImageHandler(e)} hidden/>
         <button onClick={() => AddAvatarRef.current.click()}><i className="fa-solid fa-image"></i></button>
       </div>
+
       <div className="image_preview">
-        <img alt="" src={avatarPrev} style={{width: '50px',height:'50px'}}/>
+        {avatarPrev &&
+        <img alt="" src={avatarPrev} />
+        }
       </div>
       {isViewer ? '' :
         <>
@@ -150,12 +169,14 @@ const LiveStreamEntry = () => {
         <button onClick={() => AddStreamThumbnail.current.click()}><i className="fa-solid fa-photo-film"></i></button>
       </div>
       <div className="image_preview">
-        <img alt="" src={thumbnailPrev} style={{width: '50px',height:'50px'}}/>
+        {thumbnailPrev && 
+        <img alt="" src={thumbnailPrev} />
+        }
       </div>
         </>
       }
 
-      <div>
+      <div className='lli_proceed_btn_container'>
       <button onClick={ProceedStreamBtn}>Proceed</button>
       </div>
 

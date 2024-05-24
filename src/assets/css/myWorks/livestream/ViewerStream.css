@@ -1,4 +1,15 @@
-
+.vs_loading_container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.402);
+    z-index: 99999999;
+}
 .vs_container {
     height: 100vh;
     border: 1px solid black;
