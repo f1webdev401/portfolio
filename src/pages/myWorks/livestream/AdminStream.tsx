@@ -2,9 +2,9 @@ import { useEffect, useState  , useCallback, useRef} from 'react'
 import '../../../assets/css/myWorks/livestream/AdminStreamer.css'
 import { useParams } from 'react-router-dom'
 import {v4 as uuid} from 'uuid'
-import { io } from "socket.io-client";
-const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
+// const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
 // const socket = io('http://localhost:4000',{'multiplex':false})
+import socket from './socket';
 const AdminStream = () => {
   let iceServers = {
     iceServers: [
@@ -13,9 +13,12 @@ const AdminStream = () => {
     ]
   }
   let rtcPeerConnections: any = {}
+  const [isConnected,setIsConnected] = useState(socket.connected)
+  let streamSrc : any= null ;
   const [streamerMsg,setStreamerMsg] = useState('')
   const [allMessage,setAllMessage] = useState<any>({})
   const {id,name,caption} = useParams()
+  const [isLoading,setIsLoading] = useState<boolean>(true)
   let image =  localStorage.getItem('streamerimg') || null
   let streamImgThumbnail = localStorage.getItem('streamerthumbnail') || null
   const streamVideo = useRef<any>(null)
@@ -27,20 +30,28 @@ const AdminStream = () => {
     setAllMessage((prev:any) => ({...prev , [msgId]: {message:streamerMsg,id,user:name,image,sending:true}}))
     setStreamerMsg('')
   }
-  
+
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: { facingMode: 'user' }
-    })
-    .then((stream) => {
-      streamVideo.current.srcObject = stream
-      socket.emit('register as broadcaster',id)
-    })
-    .catch(function (err) {
-      console.log("An error ocurred when accessing media devices", err);
-    });
-    socket.on('connect',() => {
+    if(!socket.connected) {
+        socket.connect()
+    }
+    function onConnect() {
+      // console.log('connected')
+      setIsConnected(true)
+      navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: { facingMode: 'user' }
+      })
+      .then((stream) => {
+        streamSrc = stream
+        streamVideo.current.srcObject = stream
+        socket.emit('register as broadcaster',id)
+        // console.log('working')
+        setIsLoading(false)
+      })
+      .catch(function (err) {
+        console.log("An error ocurred when accessing media devices", err);
+      });
       socket.emit('create-stream',{id,name,caption,streamImgThumbnail})
       socket.on('receive-message', (message) => {
         setAllMessage(message);
@@ -77,7 +88,7 @@ const AdminStream = () => {
         .catch((error:any) => {
           console.log(error);
         });
-
+        console.log('new viewer')
       })
 
 
@@ -98,13 +109,20 @@ const AdminStream = () => {
       socket.on('viewers',(n) =>{
         setViewers(n)
       })
-    })
+    }
+    function onDisconnect() {
+      socket.connect();
+    }
+    socket.on('connect',onConnect)
+    socket.on('disconnect' , onDisconnect)
     socket.on('disconnected',(user) => {
       delete rtcPeerConnections[user]
+      console.log(rtcPeerConnections)
     })
     return () => {
       socket.off('create-stream');
       socket.off('connect');
+      socket.off('disconnected');
       socket.off('receive-message');
       socket.off('answer');
       socket.off('offer');
@@ -112,9 +130,19 @@ const AdminStream = () => {
       socket.off('new viewer');
       socket.off('register as broadcaster')
       socket.off('viewers')
+      socket.off('disconnect')
+      socket.disconnect()
+      if(streamSrc) {
+
+        streamSrc.getTracks().forEach(function(track:any) {
+          track.stop();
+        });
+      } 
     };
   
   },[])
+
+
   return (
     <section className='as_container'>
       <div className='as_live_text'>
@@ -126,6 +154,11 @@ const AdminStream = () => {
       <div className="as_live_content">
 
       <div className="streamer_video_container">
+        {isLoading && 
+        <div className="as_stream_vid_loading">
+          <span className="loader"></span>
+        </div>
+        }
         <video src="" ref={streamVideo} autoPlay muted playsInline></video>
       </div>
       <div className="joined_viewer_container">

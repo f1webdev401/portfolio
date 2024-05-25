@@ -5,7 +5,8 @@
     border: 1px solid black;
 } */
 .as_container {
-    height: 100vh;
+    min-height: 100vh;
+    height: max-content;
 }
 .as_container .as_live_text {
     margin: 20px auto;
@@ -27,11 +28,13 @@
 }
 .as_live_content {
     display: flex;
-    width: max-content;
+    width: 100%;
+    max-width: 1100px;
     margin: 30px auto;
     gap: 30px;
     position: relative;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .as_live_content .streamer_video_container {
@@ -40,12 +43,28 @@
     border: 1px solid gray;
     border-radius: 20px;
     overflow: hidden;
+    position: relative;
+}
+.as_live_content .streamer_video_container .as_stream_vid_loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: rgba(128, 128, 128, 0.569);
 }
 .as_live_content .streamer_video_container video {
     width: 100%;
     border: 1px solid white;
     height: 600px;
-    margin-top: -70px;
+    margin-top: -100px;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 .as_live_content .joined_viewer_container{
@@ -142,4 +161,51 @@
     letter-spacing: 1.5px;
     padding: 0 10px;
     cursor: pointer;
+}
+
+@media only screen and (max-width:700px) {
+    .as_live_content .stream_chat {
+        width: 100%;
+        max-width: 500px;
+        margin-top: -20px;
+    } 
+    .as_live_content .streamer_video_container {
+        border-radius: 0;
+    } 
+}
+@media only screen and (max-width:550px) {
+    .as_live_content .streamer_video_container {
+        height: 300px;
+        border-radius: 0;
+    } 
+    .as_live_content .streamer_video_container video {
+        margin-top: -150px;
+    }
+}
+@media only screen and (max-width:430px) {
+    .as_live_content .streamer_video_container {
+        height: 250px;
+        border-radius: 0;
+    } 
+    .as_live_content .streamer_video_container video {
+        margin-top: -250px;
+        height: 700px;
+        transform: rotateY(180deg)  scale(1.2);
+        -webkit-transform:rotateY(180deg)  scale(1.2); /* Safari and Chrome */
+        -moz-transform:rotateY(180deg)  scale(1.5); /* Firefox */
+    }
+}
+@media only screen and (max-width:400px) {
+    .as_live_content .streamer_video_container {
+        height: 220px;
+        border-radius: 0;
+    } 
+    .as_live_content .streamer_video_container video {
+        margin-top: -250px;
+        height: 700px;
+        transform: scale(1.3);
+        transform: rotateY(180deg);
+        -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+        -moz-transform:rotateY(180deg); /* Firefox */
+    }
 }

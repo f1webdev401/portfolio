@@ -3,8 +3,9 @@ import {io} from 'socket.io-client'
 import '../../../assets/css/myWorks/livestream/ViewerStream.css'
 import { useParams } from 'react-router-dom'
 import {v4 as uuid} from 'uuid'
-const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
+// const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
 // const socket = io('http://localhost:4000')
+import socket from './socket'
 
 const ViewerStream = () => {
   let iceServers = {
@@ -32,7 +33,10 @@ const ViewerStream = () => {
     setMessageTxt('')
   }
   useEffect(() => {
-    socket.on('connect',() => {
+    if(!socket.connected) {
+      socket.connect()
+    }
+    function onConnect() {
       socket.emit('join-stream',id ,v_id)
 
       socket.on('receive-message', (message) => {
@@ -81,7 +85,12 @@ const ViewerStream = () => {
       socket.on('viewers',(n) =>{
         setViewers(n)
       })
-    })
+    }
+    function onDisconnect() {
+      socket.connect();
+    }
+    socket.on('connect',onConnect)
+    socket.on('disconnect',onDisconnect)
     return () => {
       socket.off('receive-message');
       socket.off('register as viewer');
@@ -90,6 +99,9 @@ const ViewerStream = () => {
       socket.off('offer')
       socket.off('viewers')
       socket.off('join-stream');
+      socket.off('disconnect')
+      socket.disconnect()
+      rtcPeerConnections = {}
     };
   }, []);
   const PlayVideoBtnHandler = async () => {

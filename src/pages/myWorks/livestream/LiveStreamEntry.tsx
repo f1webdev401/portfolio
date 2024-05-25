@@ -1,40 +1,75 @@
 import '../../../assets/css/myWorks/livestream/LiveStreamEntry.css'
 import { useNavigate } from "react-router-dom"
 import {v4 as uuid} from 'uuid'
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState } from "react"
 import { useContext } from 'react'
 import StreamContext from './context/StreamerContext'
-import {io} from 'socket.io-client'
-const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
+// import {io} from 'socket.io-client'
+import socket from './socket'
+// const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
 // const socket = io('http://localhost:4000')
+
+type State = {
+  startStream:boolean,
+  isViewer: boolean,
+  streamListData:any,
+  streamLink:any
+}
+type Action = {type: "START_STREAM"} | {type: "JOIN_STREAM",link:any} | {type:'GET_STREAM_LIST',stream:any} | {type: "CLOSE_START_STREAM_FORM"}
+
+const initialState = {
+  startStream: false,
+  isViewer: false,
+  streamLink: '',
+  streamListData: ''
+  
+}
+const reducer = (state: State,action: Action) => {
+  switch(action.type) {
+    case "START_STREAM" :
+      return {...state , startStream:true,isViewer:false}
+    case "JOIN_STREAM":
+      return {...state ,startStream:true,isViewer:true,streamLink:action.link}
+    case "GET_STREAM_LIST":
+      return {...state, streamListData:action.stream}
+    case "CLOSE_START_STREAM_FORM":
+      return {...state,startStream:false,isViewer:false,streamLink:''};
+    default:
+      return state
+  }
+}
 const LiveStreamEntry = () => {
   let viewerId = uuid()
-  const [startStream,setStartStream] = useState<boolean>(false)
-  const [isViewer,setIsViewer] = useState<boolean>(false)
-  const [streamLink ,setStreamLink] = useState<any>('')
+  const navigate = useNavigate()
+  // const [startStream,setStartStream] = useState<boolean>(false)
   const [streamInfo,setStreamInfo] = useState({
     name: '',
     caption: ''
   })
-  const [streamList,setStreamList] = useState<any>([])
   const [loading,setLoading] = useState<boolean>(true)
   const [avatarPrev,setAvatarPrev] = useState<any>('')
   const [thumbnailPrev,setThumbnailPrev] = useState<any>('')
   const AddAvatarRef = useRef<any>(null)
   const AddStreamThumbnail = useRef<any>(null)
-
-  
-  const StartStreamBtn = () => {
-    setStartStream(true)
-    setIsViewer(false)
+  const [state,dispatch] = useReducer(reducer,initialState)
+  // console.log('asdasd')
+  const StartStreamBtn = useCallback(() => {
+    // setStartStream(true)
+    // setIsViewer(false)
+    return dispatch({type: 'START_STREAM'})
+  },[state.startStream])
+  const JoinStreamAsViewerBtn = (link:any) => {
+    // setStartStream(true)
+    // setIsViewer(true)
+    dispatch({type: 'JOIN_STREAM',link})
+    // setStreamLink(link)
   }
   const ProceedStreamBtn = () => {
-    if(isViewer) {
-      window.location.href = streamLink + `${streamInfo.name}`
-
+    if(state.isViewer) {
+      navigate(`${state.streamLink}${streamInfo.name}`)
     }else {
       let streamId = uuid()
-      window.location.href = `/myworkf1/livestream/streamerpage/${streamId}/${streamInfo.caption}/${streamInfo.name}`
+      navigate(`/myworkf1/livestream/streamerpage/${streamId}/${streamInfo.caption}/${streamInfo.name}`)
     }
   }
   const StreamInfoHandler =(e:any) =>{ 
@@ -48,7 +83,7 @@ const LiveStreamEntry = () => {
         reader.onload = (event:any) => {
           const base64Img = event.target.result as string
           setAvatarPrev(base64Img)
-          if(isViewer) {
+          if(state.isViewer) {
             localStorage.setItem('viewerimg',base64Img)
           }else {
             localStorage.setItem('streamerimg',base64Img)
@@ -69,31 +104,52 @@ const LiveStreamEntry = () => {
           reader.readAsDataURL(streamThumbnail)
       }
   }
-  const JoinStreamAsViewerBtn = (link:any) => {
-    setStartStream(true)
-    setIsViewer(true)
-    setStreamLink(link)
-  }
-  const LliButtonClose = () => {
-    setStartStream(false)
-    setStreamInfo({
-      name: '',
-      caption: ''
-    })
-    setAvatarPrev('')
-    setThumbnailPrev('')
-  }
+  
+  // const LliButtonClose = () => {
+  //   // setStartStream(false)
+  //   setStreamInfo({
+  //     name: '',
+  //     caption: ''
+  //   })
+  //   setAvatarPrev('')
+  //   setThumbnailPrev('')
+  // }
+
+    // const connectSocket = useCallback(() => {
+    //   if(!socket.connected) {
+    //     socket.on('connect',() => {
+    //       console.log(socket.id)
+    //     })
+    //     socket.connect()
+    //   }
+    // },[socket])
+    // useEffect(() => {
+    //   connectSocket()
+    // },[])
     useEffect(() => {
-      socket.on('connect',() => {
-          console.log(socket.id,'asd213')
-        })
+      socket.connect()
+      function onConnect() {
+        // setIsConnected(true)
+        // console.log(socket.id,'asd213')
         socket.on('created-stream',(stream) => { 
-          setStreamList(stream)
+          dispatch({type:"GET_STREAM_LIST",stream})
           setLoading(false)
         })
+      }
+      function onDisconnect() {
+        // setIsConnected(false);
+        console.log('Connection lost, retrying...');
+        socket.connect();
+      }
+    
+      socket.on('connect',onConnect)
+      socket.on('disconnect', onDisconnect)
+      // console.log('working')
         return () => {
+        socket.off('disconnect')
         socket.off('connect')
         socket.off('created-stream')
+        socket.disconnect()
       }
     },[])
     if(loading) {
@@ -107,9 +163,9 @@ const LiveStreamEntry = () => {
     <>
      <div className="lse_livestream_list">
     {
-    streamList.length !== 0 ?
+    state.streamListData.length !== 0 ?
     <div className="lse_stream_list">
-    {streamList.map((stream:any,index:number) => (
+    {state.streamListData.map((stream:any,index:number) => (
       // <a href={`/myworkf1/livestream/viewerpage/${stream.id}/${viewerId}/${viewerId.slice(0,8)}`} key={index}>
       <button onClick={() => JoinStreamAsViewerBtn(`/myworkf1/livestream/viewerpage/${stream.id}/${viewerId}/`)} className='' key={index}>
         <div className="lse_stream_thumbnail">
@@ -125,12 +181,12 @@ const LiveStreamEntry = () => {
     }
 </div>
 
-{startStream  && 
+{state.startStream  && 
     <div className="lii_container">
     <div className="livestream_input_info">
-      <button onClick={LliButtonClose}  className='lli_button_close'><i className="fa-solid fa-xmark"></i></button>
+      <button onClick={() => dispatch({type:"CLOSE_START_STREAM_FORM"})}  className='lli_button_close'><i className="fa-solid fa-xmark"></i></button>
       <div className="lli_info_header">
-        <span>{isViewer ? 'Join Stream': 'Start Stream'}</span>
+        <span>{state.isViewer ? 'Join Stream': 'Start Stream'}</span>
       </div>
       <div>
         <label htmlFor="">Name:</label>
@@ -140,7 +196,7 @@ const LiveStreamEntry = () => {
           name='name'
         />
       </div>
-      {isViewer ? '' :
+      {state.isViewer ? '' :
       <div>
         <label htmlFor="">Live Stream Caption</label>
         <input type="text" 
@@ -161,7 +217,7 @@ const LiveStreamEntry = () => {
         <img alt="" src={avatarPrev} />
         }
       </div>
-      {isViewer ? '' :
+      {state.isViewer ? '' :
         <>
       <div>
         <label htmlFor="">Add Stream Thumbnail</label>
