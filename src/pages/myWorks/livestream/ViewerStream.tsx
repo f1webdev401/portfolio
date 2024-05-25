@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import {io} from 'socket.io-client'
 import '../../../assets/css/myWorks/livestream/ViewerStream.css'
 import { useParams } from 'react-router-dom'
+import {v4 as uuid} from 'uuid'
 const socket = io('https://livestream-server-qhcr.onrender.com',{transports: ['websocket']})
 // const socket = io('http://localhost:4000')
 
@@ -16,14 +17,18 @@ const ViewerStream = () => {
   let viewerImage = localStorage.getItem('viewerimg')
   const {id,v_id,name} = useParams()
   const [messageTxt,setMessageTxt] = useState('')
-  const [allMessage,setAllMessage] = useState<any>([])
+  const [allMessage,setAllMessage] = useState<any>({})
   const viewerStreamVideo = useRef<any>(null)
   const [viewers,setViewers] = useState<any>('')
-  const [viewerStream,setViewerStream] = useState<any>('')
+  const [viewerStream,setViewerStream] = useState<any>('') 
+  const [onPlayProcess,setOnPlayProcess] = useState<boolean>(false)
+  const [isPlayButton,setIsPlayButton] = useState(true)
   const [loading,setLoading] = useState<boolean>(true)
   const SendMessageBtn = (e:any) => {
     e.preventDefault()
-    socket.emit('message',messageTxt,id,name,viewerImage)
+    let msgId = uuid()
+    socket.emit('message',messageTxt,id,name,viewerImage,false,msgId)
+    setAllMessage((prev:any) => ({...prev , [msgId]:{message:messageTxt,id,user:name,image:viewerImage,sending:true}}))
     setMessageTxt('')
   }
   useEffect(() => {
@@ -51,6 +56,7 @@ const ViewerStream = () => {
 
         rtcPeerConnections[broadcaster.id].ontrack = (event:any) => {
             setViewerStream(event.streams[0])
+            setLoading(false)
         };
         rtcPeerConnections[broadcaster.id].onicecandidate = (event:any) => {
           if(event.candidate) {
@@ -86,13 +92,16 @@ const ViewerStream = () => {
       socket.off('join-stream');
     };
   }, []);
-
+  const PlayVideoBtnHandler = async () => {
+    setOnPlayProcess(true)
+    setIsPlayButton(false)
+    await viewerStreamVideo.current.play();
+    setOnPlayProcess(false)
+  }
   useEffect(() => {
     if (viewerStreamVideo.current && viewerStream) {
       viewerStreamVideo.current.srcObject = viewerStream;
-      viewerStreamVideo.current.play();
     } 
-    setLoading(false)
   },[viewerStream])
   if(loading) {
     return <>
@@ -104,13 +113,26 @@ const ViewerStream = () => {
   return (
     <section className='vs_container'>
       <div className="vs_video_container">
+        {
+          isPlayButton && 
+        <div className="vs_video_bg_play">
+          <button onClick={PlayVideoBtnHandler} className='vs_play_button'>
+          <i className="fa-solid fa-play"></i>
+          </button>
+        </div>
+        }
+      {onPlayProcess && 
+        <div className="vs_video_loading">
+          <span className="loader"></span>
+        </div>
+        }
       <div className='vs_live_text'>
       <span>
       <i className="fa-regular fa-circle-dot"></i>
         Live</span>
       <i className="fa-solid fa-headset"></i>
       </div>
-      <video src="" ref={viewerStreamVideo}   playsInline muted ></video>
+      <video src="" ref={viewerStreamVideo}   playsInline></video>
       <div className='vs_viewer_wrapper'>
         {viewers ? 
         <p>viewers {viewers}</p> : <p>viewers 0</p>  
@@ -127,8 +149,8 @@ const ViewerStream = () => {
           <i className="fa-regular fa-comment-dots"></i>
           </div>
         <div className="vs_chat_messages">
-          {allMessage && allMessage.map((msg:any , index:number) => (
-            <div className='vs_chat_msg_wrapper' key={index}>
+          {allMessage && Object.values(allMessage).map((msg:any , index:number) => (
+            <div style={{opacity: msg.sending ? '.7':'1'}} className='vs_chat_msg_wrapper' key={index}>
             <span>{msg.user}</span>
               <div className="vs_chat_mgs_u_info">
                 <div className="vs_chat_img_wrapper">

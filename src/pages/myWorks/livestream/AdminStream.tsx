@@ -1,6 +1,7 @@
 import { useEffect, useState  , useCallback, useRef} from 'react'
 import '../../../assets/css/myWorks/livestream/AdminStreamer.css'
 import { useParams } from 'react-router-dom'
+import {v4 as uuid} from 'uuid'
 import { io } from "socket.io-client";
 const socket = io('https://livestream-server-qhcr.onrender.com',{'multiplex':false,transports: ['websocket']})
 // const socket = io('http://localhost:4000',{'multiplex':false})
@@ -13,17 +14,17 @@ const AdminStream = () => {
   }
   let rtcPeerConnections: any = {}
   const [streamerMsg,setStreamerMsg] = useState('')
-  const [allMessage,setAllMessage] = useState<any>([])
-  const [joinedViewer,setJoinedViewer] = useState<any>([])
+  const [allMessage,setAllMessage] = useState<any>({})
   const {id,name,caption} = useParams()
   let image =  localStorage.getItem('streamerimg') || null
   let streamImgThumbnail = localStorage.getItem('streamerthumbnail') || null
-  const [s_id,setSid] = useState<any>('')
   const streamVideo = useRef<any>(null)
   const [viewers,setViewers] = useState<any>(0)
   const StreamerSendMessage = (e:any) => {
     e.preventDefault()
-    socket.emit('message',streamerMsg,id,name,image)
+    let msgId = uuid()
+    socket.emit('message',streamerMsg,id,name,image,true , msgId)
+    setAllMessage((prev:any) => ({...prev , [msgId]: {message:streamerMsg,id,user:name,image,sending:true}}))
     setStreamerMsg('')
   }
   
@@ -96,7 +97,6 @@ const AdminStream = () => {
 
       socket.on('viewers',(n) =>{
         setViewers(n)
-       
       })
     })
     socket.on('disconnected',(user) => {
@@ -137,8 +137,8 @@ const AdminStream = () => {
           <i className="fa-regular fa-comment-dots"></i>
           </div>
         <div className="chat_messages_container">
-          {allMessage && allMessage.map((msg:any , index:number) => (
-            <div className='as_chat_wrapper' key={index}>
+          {allMessage && Object.values(allMessage).map((msg:any , index:number) => (
+            <div style={{opacity: msg.sending ? '.7':'1'}} className='as_chat_wrapper' key={index}>
               <span>{msg.user}</span>
               <div className='as_chat_msg_info'>
                 <div className="as_chat_img_wrapper">
