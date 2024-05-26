@@ -94,6 +94,7 @@ const LiveStreamEntry = () => {
         reader.readAsDataURL(image)
       }
   }
+  
   const StreamThumbnailHandler = (e:any) => {
       if(e && e.target.files && e.target.files.length > 0) {
           const streamThumbnail = e.target.files[0]
@@ -140,7 +141,6 @@ const LiveStreamEntry = () => {
           socket.on('created-stream',(stream) => { 
             dispatch({type:"GET_STREAM_LIST",stream})
             // setLoading(false)
-            console.log('connected')
           })
         }
       }
