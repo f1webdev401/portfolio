@@ -13,7 +13,8 @@ type State = {
   startStream:boolean,
   isViewer: boolean,
   streamListData:any,
-  streamLink:any
+  streamLink:any,
+  loading:boolean
 }
 type Action = {type: "START_STREAM"} | {type: "JOIN_STREAM",link:any} | {type:'GET_STREAM_LIST',stream:any} | {type: "CLOSE_START_STREAM_FORM"}
 
@@ -21,7 +22,8 @@ const initialState = {
   startStream: false,
   isViewer: false,
   streamLink: '',
-  streamListData: ''
+  streamListData: '',
+  loading: true,
   
 }
 const reducer = (state: State,action: Action) => {
@@ -31,7 +33,7 @@ const reducer = (state: State,action: Action) => {
     case "JOIN_STREAM":
       return {...state ,startStream:true,isViewer:true,streamLink:action.link}
     case "GET_STREAM_LIST":
-      return {...state, streamListData:action.stream}
+      return {...state, streamListData:action.stream,loading:false}
     case "CLOSE_START_STREAM_FORM":
       return {...state,startStream:false,isViewer:false,streamLink:''};
     default:
@@ -46,7 +48,7 @@ const LiveStreamEntry = () => {
     name: '',
     caption: ''
   })
-  const [loading,setLoading] = useState<boolean>(true)
+  // const [loading,setLoading] = useState<boolean>(true)
   const [avatarPrev,setAvatarPrev] = useState<any>('')
   const [thumbnailPrev,setThumbnailPrev] = useState<any>('')
   const AddAvatarRef = useRef<any>(null)
@@ -133,7 +135,7 @@ const LiveStreamEntry = () => {
         // console.log(socket.id,'asd213')
         socket.on('created-stream',(stream) => { 
           dispatch({type:"GET_STREAM_LIST",stream})
-          setLoading(false)
+          // setLoading(false)
         })
       }
       function onDisconnect() {
@@ -152,7 +154,7 @@ const LiveStreamEntry = () => {
         socket.disconnect()
       }
     },[])
-    if(loading) {
+    if(state.loading) {
       return <>
       <div className='lse_loader_container'>
   <span className="loader"></span>
