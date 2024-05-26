@@ -129,14 +129,17 @@ const LiveStreamEntry = () => {
     //   connectSocket()
     // },[])
     useEffect(() => {
+      let isMounted = true
       socket.connect()
       function onConnect() {
         // setIsConnected(true)
         // console.log(socket.id,'asd213')
-        socket.on('created-stream',(stream) => { 
-          dispatch({type:"GET_STREAM_LIST",stream})
-          // setLoading(false)
-        })
+        if(isMounted) {
+          socket.on('created-stream',(stream) => { 
+            dispatch({type:"GET_STREAM_LIST",stream})
+            // setLoading(false)
+          })
+        }
       }
       function onDisconnect() {
         // setIsConnected(false);
