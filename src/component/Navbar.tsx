@@ -91,7 +91,14 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
                 </div>
             }
             {/* <span>{user ? <button onClick={logout}>Signout</button> : ''}</span>z */}
-          
+            {user ? '' :
+            
+           <button 
+            onClick={() => setIsNavMenuOpen(true)}
+            className="nav_menu_btn">
+            <i className="fa-solid fa-bars"></i>
+            </button>
+            }
         </ul>
         {
             isNavMenuOpen !== "" &&isNavMenuOpen && 

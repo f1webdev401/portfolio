@@ -10,7 +10,9 @@
     max-width: 420px;
     border: 1px solid gray;
     padding: 20px;
+    color: #fff;
     border-radius: 10px;
+    background-color: #1A1A1A;
 }
 
 
@@ -76,7 +78,6 @@
     font-family: "Poppins",sans-serif;
     letter-spacing: 1px;
     display: block;
-    margin-bottom: -10px;
     z-index: 2;
 }
 .sign_in_page .sign_in_form .sip_inp_container input {
@@ -88,6 +89,8 @@
     border: none;
     border-bottom: 1px solid gray;
     width: 100%;
+    background-color: transparent;
+    color: #fff;
 }
 .sign_in_page .sign_in_form .sip_inp_container .sif_password_container {
     width: 100%;
