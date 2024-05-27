@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="footer_txt">
             <h1>INTERESTED TO</h1>
             <h1>ENGAGE MY SERVICES ?</h1>
-            <span>f1webdev@gmail.com</span>
+            <span>f1webdev401@gmail.com</span>
         </div>
         <div className="footer_social_links">
             <i className="fa-brands fa-facebook"></i>

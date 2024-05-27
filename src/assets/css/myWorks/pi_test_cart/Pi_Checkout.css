@@ -9,12 +9,17 @@
     font-size: 22px;
     letter-spacing: 1.5px;
     font-family: "Poppins",sans-serif;
+    width: max-content;
+    color: #fff;
 }
 
 .pic_container .pic_payment_id_info {
     display: flex;
     align-items: center;
     gap: 10px;
+    width: max-content;
+    margin-top: 10px;
+    color: #fff;
 }
 .pic_container .pic_payment_id_info h2 {
     font-family: "Poppins",sans-serif;
@@ -27,6 +32,7 @@
     align-items: center;
     padding: 10px 0;
     gap: 15px;
+    
 }
 .pic_payment_form .payment_option button {
     display: flex;
@@ -49,7 +55,11 @@
     justify-content: space-between;
 }
 .pic_payment_form .pic_payment_information .pic_billing_information {
-    width: 45%;
+    width: 47%;
+    background-color: #1A1A1A;
+    padding: 20px 10px;
+    color: #fff;
+    border-radius: 5px;
 }
 .pic_payment_form .pic_payment_information .pic_billing_information div{
     display: flex;
@@ -63,7 +73,11 @@
     padding-left: 5px;
 }
 .pic_payment_form .pic_payment_information .pic_detail_information {
-    width: 45%;
+    width: 47%;
+    background-color: #1A1A1A;
+    padding: 20px 10px;
+    border-radius: 5px;
+    color: #f4f4f4;
 }
 .pic_payment_form .pic_payment_information .pic_detail_information .card_detail_inp_box {
     display: flex;
@@ -113,7 +127,7 @@
 }
 .pic_cofirm_payment .pic_ammount_to_pay  span {
     font-size: 18px;
-
+    color: #fff;
 }
 .pic_cofirm_payment .pic_proceed_payment_btn {
     width: 100%;

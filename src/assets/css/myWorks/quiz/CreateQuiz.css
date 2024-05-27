@@ -1,7 +1,15 @@
 .add_quiz_container {
-    padding: 10px;
+    padding: 20px;
     width: 100%;
-    max-width: 410px;
+    max-width: 500px;
+    background-color: #1A1A1A;
+    border-radius: 10px;
+}
+.add_quiz_title {
+    background-color: #153A61;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
 }
 .quiz_wrapper {
     border: 1px solid #153A61;
@@ -10,6 +18,9 @@
     border-bottom: 2px solid black;
     margin-bottom: 10px;
     position: relative;
+    background-color: #011C30;
+    padding: 10px;
+    color: white;
 }
 
 .quiz_wrapper .qw_remove_quiz {
@@ -181,3 +192,8 @@
 }
 
 
+@media only screen and (max-width:400px) {
+    .add_quiz_container {
+        padding: 5px;
+    }
+}

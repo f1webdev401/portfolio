@@ -25,6 +25,7 @@ const AdminStream = () => {
   const [viewers,setViewers] = useState<any>(0)
   const StreamerSendMessage = (e:any) => {
     e.preventDefault()
+    if(streamerMsg === '') return;
     let msgId = uuid()
     socket.emit('message',streamerMsg,id,name,image,true , msgId)
     setAllMessage((prev:any) => ({...prev , [msgId]: {message:streamerMsg,id,user:name,image,sending:true}}))

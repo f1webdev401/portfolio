@@ -27,6 +27,7 @@ const ViewerStream = () => {
   const [loading,setLoading] = useState<boolean>(true)
   const SendMessageBtn = (e:any) => {
     e.preventDefault()
+    if(messageTxt === '') return;
     let msgId = uuid()
     socket.emit('message',messageTxt,id,name,viewerImage,false,msgId)
     setAllMessage((prev:any) => ({...prev , [msgId]:{message:messageTxt,id,user:name,image:viewerImage,sending:true}}))

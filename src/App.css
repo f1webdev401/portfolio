@@ -9,8 +9,12 @@
   --yellow-green: #B1DA5A;
   --light-gray: #243033;
   --dark-red: #C62F24;
+  --light-dark: #171719;
+  --body-bg: #000000
 }
-
+body {
+  background-color: var(--body-bg);
+}
 .main_app {
   width: 100%;
   max-width: 1500px;

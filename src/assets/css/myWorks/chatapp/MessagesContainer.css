@@ -91,7 +91,8 @@
 .cas_message_body .message_all_c .cas_message_content_all span {
     font-family: "Poppins",sans-serif;
     letter-spacing: 1px;
-    border: 1px solid gray;
+    background-color: #346353;
+    color: white;
     padding: 5px;
     font-size: 14px;
     margin-bottom: 5px;

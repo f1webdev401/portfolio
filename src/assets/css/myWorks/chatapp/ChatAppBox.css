@@ -1,5 +1,5 @@
 .chat_app_container {
-    border: 1px solid black;
+    border: 1px solid white;
     height: 550px;
     width: 100%;
     max-width: 1100px;
@@ -10,6 +10,7 @@
     position: relative;
     grid-row: auto;
     position: relative;
+    background-color: #1A1A1A;
 }
 
 

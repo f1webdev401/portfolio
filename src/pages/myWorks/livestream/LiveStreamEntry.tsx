@@ -173,6 +173,7 @@ const LiveStreamEntry = () => {
     {
     state.streamListData.length !== 0 ?
     <div className="lse_stream_list">
+      <h1>Watch Streams</h1>
     {state.streamListData.map((stream:any,index:number) => (
       // <a href={`/myworkf1/livestream/viewerpage/${stream.id}/${viewerId}/${viewerId.slice(0,8)}`} key={index}>
       <button onClick={() => JoinStreamAsViewerBtn(`/myworkf1/livestream/viewerpage/${stream.id}/${viewerId}/`)} className='' key={index}>
@@ -185,7 +186,9 @@ const LiveStreamEntry = () => {
     ))}
     </div>
     : 
-      <p>No Streams</p>
+    <div className="no_stream_text">
+      <p>No Available Streams</p>
+    </div>
     }
 </div>
 

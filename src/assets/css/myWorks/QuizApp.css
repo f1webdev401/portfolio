@@ -10,5 +10,16 @@
     font-family: "Merriweather", serif;
     font-size: 30px;
     letter-spacing: 1px;
+    background-color: #153A61;
+    font-family: "Poppins",sans-serif;
+    padding: 5px 20px;
+    margin: 10px 0;
+    color: #f4f4f4;
+    border-radius: 5px;
+}
+@media only screen and (max-width:400px) {
+    .quiz_app_page {
+        padding: 0;
+    }
 }
 

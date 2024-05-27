@@ -101,16 +101,16 @@ const LandingPage = () => {
     <section className='landing_page'>
         <CursorEffect />
     <div className='hero_section'>
-        <div className="bottom_curve">
-
-        </div>
+       
         <div className="text_banner">
+            <div className="text_banner_wrap">
             <h1>HI IM</h1>
             <h1>F1 WEB DEV</h1>
-            <h1>STARTING TO DIVE INTO WEBSITE DEVELOPMENT</h1>
+            <h1>FULL STACK WEB DEVELOPER</h1>
+            </div>
             <div className="txt_banner_button">
-                <button className='hire_me_btn'>HIRE ME</button>
-                <button className='contact_me_btn'>CONTACT ME</button>
+                <button className='hire_me_btn'>HIRE ME / CONTACT ME</button>
+                {/* <button className='contact_me_btn'>CONTACT ME</button> */}
             </div>
             <div className="txt_banner_rate_views">
                     <button className='txt_page_views'>
@@ -123,20 +123,20 @@ const LandingPage = () => {
                     </button>
             </div>
         </div>
-        <div className="hero_img_banner">
+        {/* <div classNamse="hero_img_banner"> */}
             {/* <h1>I'M KINGKONG</h1> */}
-            <div className="kingkong_img">
+            {/* <div className="kingkong_img">
                 <img src={HeroImg} alt="" />
             </div>
             <h1>HAVE A NICE DAY!</h1>
-        </div>
+        </div> */}
     </div>
     <div className="skills_section">
         
         <h1 className='skills_text'>SKILLS</h1>        
         <div className="skill_wrapper">
         <div className='skill'>
-            <i className="fa-brands fa-html5"></i>
+            <i className="fa-brands fa-html5" style={{color:'red'}}></i>
             <h1>HTML</h1>
         </div>
         <div className="skill">
@@ -144,7 +144,7 @@ const LandingPage = () => {
             <h1>CSS</h1>
         </div>
         <div className="skill">
-            <i className="fa-brands fa-js"></i>
+            <i className="fa-brands fa-js"  style={{color:'yellow'}}></i>
             <h1>JAVASCRIPT</h1>
         </div>
         <div className="skill">
@@ -152,19 +152,19 @@ const LandingPage = () => {
             <h1>REACT JS</h1>
         </div>
         <div className="skill">
-        <i className="fa-brands fa-node"></i>
+        <i className="fa-brands fa-node"  style={{color:'green'}}></i>
             <h1>NODE JS</h1>
         </div>
         <div className="skill">
-        <i className="fa-solid fa-code-compare"></i>
+        <i className="fa-solid fa-code-compare"  style={{color:'aqua'}}></i>
             <h1>API</h1>
         </div>
         <div className="skill">
-        <i className="fa-brands fa-python"></i>
+        <i className="fa-brands fa-python"  style={{color:'yellowgreen'}}></i>
             <h1>PYTHON</h1>
         </div>
         <div className="skill">
-        <i className="fa-solid fa-d"></i>
+        <i className="fa-solid fa-d"  style={{color:'green'}}></i>
             <h1>DJANGO</h1>
         </div>
         </div>  

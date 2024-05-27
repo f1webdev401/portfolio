@@ -47,6 +47,7 @@
     border-radius: 20px;
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     position: relative;
+    background-color: #1A1A1A;
 }
 .profile_info_container .profile_image {
     position: relative;
@@ -86,7 +87,9 @@
     object-fit: cover;
 }
 
-
+.profile_info_container .profile_nf_container div {
+    color: #fff;
+}
 .profile_info_container .profile_nf_container .profile_name {
     font-family: 'Poppins',sans-serif;
     letter-spacing: 1.5px;
@@ -108,12 +111,15 @@
     display: flex;
     gap: 20px;
 }
+.profile_info_container .profile_edit_btn .profile_save_cancel_btn button  {
+    color: #fff;
+}
 .profile_info_container .profile_edit_btn button {
     background-color: transparent;
     cursor: pointer;
     border: none;
     display: flex;
-    display: grid;
+    color: #fff;
 }
 .profile_info_container .profile_edit_btn button i {
     font-size: 20px;

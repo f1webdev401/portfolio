@@ -88,6 +88,9 @@
     font-family: 'Poppins',sans-serif;
     letter-spacing: 1.5px;
 }
+.u_profile_info_container .u_profile_nf_container .u_profile_name {
+    color: #fff;
+}
 .u_profile_info_container .u_profile_nf_container .u_profile_name span {
     font-size: 14px;
     font-family: "Poppins",sans-serif;
@@ -100,6 +103,7 @@
     font-family: 'Poppins',sans-serif;
     font-size: 13px;
     font-family: "Poppins",sans-serif;
+    color: #fff;
 }
 
 .u_profile_info_container .u_profile_edit_btn {

@@ -17,6 +17,8 @@
     opacity: 1;
     transform: scale(1);
     transition: all .3s;
+    background-color: #2135499c;
+    color: #fff;
 }
 .chat_app_nav a:hover {
     opacity: .6;

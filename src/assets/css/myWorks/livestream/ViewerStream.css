@@ -150,6 +150,7 @@
 }
 .vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper span {
     font-family: "Poppins",sans-serif;
+    color: #fff;
 }
 .vs_chat_container .vs_chat_messages .vs_chat_msg_wrapper .vs_chat_mgs_u_info{
     display: flex;
@@ -175,6 +176,9 @@
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.476);
 }
+.vs_chat_container  {
+    background-color: #1A1A1A;
+}
 .vs_chat_container  form {
     width: 100%;
     display: flex;
@@ -194,8 +198,18 @@
     letter-spacing: 1.5px;
     padding: 0 10px;
     cursor: pointer;
+    background-color: #01B9EF;
+    border: none;
+    color: #fff;
+    transform: scale(1);
+    transition: all .3s;
 }
-
+.vs_chat_container  form button:hover {
+    transform: scale(1.03);
+}
+.vs_chat_container  form button:active {
+    transform: scale(1);
+}
 @media only screen and (max-width:700px) {
     .vs_container {
         padding: 20px 0;

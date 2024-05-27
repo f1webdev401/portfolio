@@ -10,15 +10,68 @@
     background-color: rgba(128, 128, 128, 0.402);
     z-index: 99999999;
 }
+.start_live_button {
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    right:  0;
+    margin: 0 auto;
+    width: max-content;
+    height: max-content;
+    padding: 10px 20px;
+    letter-spacing: 1.5px;
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    cursor: pointer;
+    background-color: #316397;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    transition: all .2s;
+}
+.start_live_button:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 10px aqua;
+}
+.start_live_button:hover {
+    transform: scale(1);
+    box-shadow: 0px 0px 10px aqua;
+}
 .lse_livestream_list {
     padding: 20px 30px;
+}
+.lse_livestream_list .no_stream_text {
+    height: 400px;
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    background-color: #1A1A1A;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+.lse_livestream_list .no_stream_text p {
+    color: #fff;
+    padding: 20px 30px;
+    background-color: #316397;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #55d6b6a9 , 0px 0px 20px rgba(0, 255, 255, 0.488) ;
 }
 .lse_livestream_list .lse_stream_list {
     width: 100%;
     height: max-content;
     display: flex;
     gap: 20px;
-    flex-wrap: wrapx;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    position: relative;
+}
+.lse_livestream_list .lse_stream_list h1 {
+    position: absolute;
+    color: #fff;
+    top: 0;
+    font-family: "Poppins",sans-serif;
 }
 .lse_livestream_list .lse_stream_list button{
     width: 250px;
@@ -31,6 +84,8 @@
     overflow: hidden;
     border: 1px solid gray;
     cursor: pointer;
+    background-color: #1A1A1A;
+    color: blue;
 }
 .lse_livestream_list .lse_stream_list button .lse_stream_thumbnail{
     width: 100%;
@@ -144,3 +199,4 @@
 .lii_container .livestream_input_info .lli_proceed_btn_container button:active {
     opacity:1;
 }
+

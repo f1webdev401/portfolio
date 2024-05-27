@@ -24,8 +24,14 @@ const reducer = (state: State,action:Action) => {
         case '9-0':
         case '0-0':
         case '.-0':
+        // case '%-0':
             if(action.payload === ".") {
                 if(state.firstNum.includes(".")) {
+                    return state
+                }
+            }
+            if(action.payload === "%") {
+                if(state.firstNum.includes("%")) {
                     return state
                 }
             }
@@ -41,9 +47,15 @@ const reducer = (state: State,action:Action) => {
         case '9-1':
         case '0-1':
         case '.-1':
+        // case '%-1':
             if(state.operator === '') return state
             if(action.payload === ".") {
                 if(state.secondNum.includes(".")) {
+                    return state
+                }
+            }
+            if(action.payload === "%") {
+                if(state.secondNum.includes("%")) {
                     return state
                 }
             }
@@ -57,7 +69,7 @@ const reducer = (state: State,action:Action) => {
         case "--0": 
         case "+-0":
         case "÷-1": 
-        case "%-1":
+        // case "%-1":
         case "×-1": 
         case "--1": 
         case "+-1":

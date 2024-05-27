@@ -19,7 +19,6 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
     const navigate = useNavigate()
     const {setSignUpMessage} = useContext(SignUpContext)
     const [isNavMenuOpen,setIsNavMenuOpen] = useState<any>("")
-    const [loading,setLoading] = useState(true)
     const logout = async () => {
         await signOut(auth)
         setIsNavMenuOpen(false)
@@ -39,7 +38,7 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
             <NavLink to={''}
             style={({isActive}) => {
                 return {
-                    backgroundColor: isActive ? '#969CA8' : '',
+                    backgroundColor: isActive ? '#5562E9' : '',
                     color: isActive ? '#fff' : ''
                 }
             }}
@@ -49,7 +48,7 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
             </NavLink>
             <NavLink  style={({isActive}) => {
                 return {
-                    backgroundColor: isActive ? '#969CA8' : '',
+                    backgroundColor: isActive ? '#5562E9' : '',
                     color: isActive ? '#fff' : ''
                 }
             }}
@@ -58,7 +57,7 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
             </NavLink>
             <NavLink  style={({isActive}) => {
                 return {
-                    backgroundColor: isActive ? '#969CA8' : '',
+                    backgroundColor: isActive ? '#5562E9' : '',
                     color: isActive ? '#fff' : ''
                 }
             }}
@@ -68,22 +67,31 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
 
             {user? 
              
-            <NavLink to={'/profile'} className="nav_user_image">
+                <button 
+            onClick={() => setIsNavMenuOpen(true)}
+            className="nav_menu_btn_logged_in">
+                <div className="user_logged_in_img">
+
                 <img src={user.photoURL} alt="" />
-            </NavLink>
-            :
-                <NavLink to={"sign_in"}>
-                    <span className="nav_sign_in_txt">SIGN IN
+                </div>
+            <i className="fa-solid fa-bars"></i>
+
+            </button>
+            :   
+                <div className="nav_sr_link">
+                
+                <NavLink className="nav_login_a" to={"sign_in"}>
+                    <span className="nav_sign_in_txt">LOGIN
                         </span>    
                         <i className="fa-solid fa-right-to-bracket nav_sign_in_icon"></i>
                 </NavLink>
+                <NavLink to={'sign_up'}>
+                    <span>SIGN UP</span>
+                </NavLink>
+                </div>
             }
             {/* <span>{user ? <button onClick={logout}>Signout</button> : ''}</span>z */}
-           <button 
-            onClick={() => setIsNavMenuOpen(true)}
-            className="nav_menu_btn">
-            <i className="fa-solid fa-bars"></i>
-            </button>
+          
         </ul>
         {
             isNavMenuOpen !== "" &&isNavMenuOpen && 

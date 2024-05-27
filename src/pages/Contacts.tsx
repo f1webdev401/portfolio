@@ -8,7 +8,7 @@ const Contacts = () => {
             </div>
             <div className="email">
                 <h1>Email: </h1>
-                <p>adarogn45@gmail.com</p>
+                <p>f1webdev401@gmail.com</p>
             </div>
         </div>
     </section>

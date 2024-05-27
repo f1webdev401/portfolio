@@ -18,6 +18,15 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #1A1A1A;
+    transform: scale(1);
+    transition: all .3s;
+}
+.mywork_list_wrapper .work_container:hover {
+    transform: scale(1.03);
+}
+.mywork_list_wrapper .work_container:active {
+    transform: scale(1);
 }
 .mywork_list_wrapper .work_container .mywork_image {
     width: 98%;

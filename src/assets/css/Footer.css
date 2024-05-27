@@ -5,6 +5,8 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border-top: 1px solid #fff;
+    color: #fff;
 }
 
 .footer .footer_txt h1 {
