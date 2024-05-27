@@ -93,7 +93,7 @@ const Navbar: React.FC<NavbarProps>  = ({user}) => {
             {/* <span>{user ? <button onClick={logout}>Signout</button> : ''}</span>z */}
             {user ? '' :
             
-           <button 
+           <button style={{color:'#fff'}} 
             onClick={() => setIsNavMenuOpen(true)}
             className="nav_menu_btn">
             <i className="fa-solid fa-bars"></i>
