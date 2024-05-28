@@ -4,6 +4,7 @@ import CursorEffect from './CursorEffect'
 import HeroImg from '../assets/images/hero_section_img.png'
 import Cookies from 'js-cookie'
 import { getDatabase , set , get ,ref } from 'firebase/database'
+import socket from './myWorks/livestream/socket'
 const LandingPage = () => {
     const [pageview,setPageview] = useState<any>(0)
     const [ratingCount,setRatingCount] = useState<number>(0)
@@ -71,6 +72,9 @@ const LandingPage = () => {
     useEffect(() => {
        
         let isViewed = Cookies.get('viewed')
+        if(!socket.connected) {
+            socket.connect()
+        }
         if(isViewed === undefined || !isViewed) {
             Cookies.set('viewed',"true")
             get(countRef).then((snapshot:any) => {
@@ -94,7 +98,9 @@ const LandingPage = () => {
                 setAverageRating(0)
             }
         })
-
+        return () => {
+            socket.disconnect()
+        }
     },[successSubmit])
    
   return (
@@ -170,6 +176,10 @@ const LandingPage = () => {
         </div>  
     </div>
     
+
+    
+
+
     <form className="add_rating_review" onSubmit={(e) => {
         e.preventDefault()
         SubmitReviews()
