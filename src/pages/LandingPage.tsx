@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import '../assets/css/LandingPage.css'
 import CursorEffect from './CursorEffect'
-import HeroImg from '../assets/images/hero_section_img.png'
 import Cookies from 'js-cookie'
 import { getDatabase , set , get ,ref } from 'firebase/database'
 import socket from './myWorks/livestream/socket'
+import { Helmet } from 'react-helmet-async'
 const LandingPage = () => {
     const [pageview,setPageview] = useState<any>(0)
     const [ratingCount,setRatingCount] = useState<number>(0)
@@ -103,8 +103,14 @@ const LandingPage = () => {
         }
     },[successSubmit])
    
+
   return (
     <section className='landing_page'>
+        <Helmet>
+            <title>PORTFOLIO LANDING PAGE</title>
+            <meta name="description" content="Looking for a  website developer? Hire me for full-stack development services to elevate your business online!" />
+            <link rel="canonical" href="/" />
+        </Helmet>
         <CursorEffect />
     <div className='hero_section'>
        

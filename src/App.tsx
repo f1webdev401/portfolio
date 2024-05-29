@@ -5,6 +5,7 @@ import Footer from "./component/Footer";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "./firebase-config";
+import { HelmetProvider } from "react-helmet-async";
 interface User {
   uid: string;
   email: string | null ;
@@ -18,11 +19,13 @@ function App() {
   })
   return (
     <>
+    <HelmetProvider>
       <main className="main_app">
         <Navbar user={user}/>
         <Outlet/>
         <Footer />
       </main>
+    </HelmetProvider>
     </>
   );
 }

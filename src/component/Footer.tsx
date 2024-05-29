@@ -7,7 +7,7 @@ const Footer = () => {
             <h1>ENGAGE MY SERVICES ?</h1>
             <span>f1webdev401@gmail.com</span>
         </div>
-        <div className="footer_social_links">
+        <div className="footer_ social_links">
             <i className="fa-brands fa-facebook"></i>
             <i className="fa-brands fa-google"></i>
             <i className="fa-brands fa-linkedin"></i>

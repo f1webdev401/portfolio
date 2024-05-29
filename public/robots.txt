@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow:/sign_in
+Disallow:/sign_up
+Disallow:/myworkf1
+Disallow:/contacts
