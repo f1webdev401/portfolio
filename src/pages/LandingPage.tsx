@@ -111,13 +111,13 @@ const LandingPage = () => {
             <meta name="description" content="Looking for a  website developer? Hire me for full-stack development services to elevate your business online!" />
             <link rel="canonical" href="/" />
         </Helmet>
-        <CursorEffect />
+        {/* <CursorEffect /> */}
     <div className='hero_section'>
        
         <div className="text_banner">
             <div className="text_banner_wrap">
-            <h1>HI IM</h1>
-            <h1>F1 WEB DEV</h1>
+            <h1>HI !</h1>
+            <h1>F1 WEB DEV HERE</h1>
             <h1>FULL STACK WEB DEVELOPER</h1>
             </div>
             <div className="txt_banner_button">
@@ -210,7 +210,7 @@ const LandingPage = () => {
                             setRatingCountSet(true)
                             setRateReviewData((prev:any)=> ({...prev , rate:val}))
                         }}
-                     style={{color:val <= ratingCount ? 'yellow':'gray'}} className="fa-solid fa-star" key={index}></i>
+                     style={{color:val <= ratingCount ? 'yellow':'white'}} className="fa-solid fa-star" key={index}></i>
                 ))}
             </div>
             <div className="add_review_wrapper">

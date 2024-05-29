@@ -169,6 +169,12 @@
 .add_rating_review h1 {
     font-family: "Poppins",sans-serif;
     letter-spacing: 1.5px;
+    color: #fff;
+    background-color: #01B9EF;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-shadow: 0px 0px 5px black;
 }
 .add_rating_review .add_rating_wrapper {
     display: flex;
@@ -193,6 +199,8 @@
 .add_rating_review .email_input_  label {
     display: block;
     font-family: "Poppins",sans-serif;
+    letter-spacing: 1.5px;
+    color: white;
 }
 .add_rating_review .email_input_ input {
     width: 100%;

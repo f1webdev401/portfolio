@@ -5,7 +5,6 @@ import ChatImg from '../assets/images/my_works/chat_img.png'
 import CalcImg from '../assets/images/my_works/calculator_img.png'
 import QuizImg from '../assets/images/my_works/quiz_app_img.png'
 import EcomImg  from '../assets/images/my_works/ecommerce_img.png'
-
 const MyWorkList = () => {
   return (
     <>
