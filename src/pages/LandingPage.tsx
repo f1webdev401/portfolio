@@ -70,7 +70,6 @@ const LandingPage = () => {
     });
    
     useEffect(() => {
-       
         let isViewed = Cookies.get('viewed')
         if(!socket.connected) {
             socket.connect()
@@ -98,9 +97,6 @@ const LandingPage = () => {
                 setAverageRating(0)
             }
         })
-        return () => {
-            socket.disconnect()
-        }
     },[successSubmit])
    
 
